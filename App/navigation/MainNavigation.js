@@ -1,10 +1,11 @@
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
-import HomeScreen from '../screens/HomeScreen';
+import AuthScreen from '../screens/AuthScreen';
+import BottomNavigator from './BottomNavigator';
 
-const MainNavigator = createStackNavigator({
-  Home: HomeScreen
+const MainNavigator = createSwitchNavigator({
+  // Auth: AuthScreen,
+  Home: BottomNavigator
 });
 
 export default createAppContainer(MainNavigator);

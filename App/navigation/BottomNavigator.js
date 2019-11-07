@@ -2,8 +2,8 @@ import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import OrdersScreen from '../screens/OrdersScreen';
 import HomeNavigator from './HomeNavigation';
+import OrderNavigator from './OrderNavigation';
 
 const BottomNavigator = createBottomTabNavigator({
   Home: {
@@ -17,7 +17,7 @@ const BottomNavigator = createBottomTabNavigator({
     },
   },
   Orders: {
-    screen: OrdersScreen,
+    screen: OrderNavigator,
     navigationOptions: ({navigation}) => {
       return {
         tabBarIcon: () => {

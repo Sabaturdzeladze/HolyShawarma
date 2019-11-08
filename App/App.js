@@ -9,18 +9,21 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {Provider} from 'react-redux';
-import {combineReducers, createStore} from 'redux';
+import {combineReducers, createStore, applyMiddleware} from 'redux';
+import ReduxThunk from 'redux-thunk';
 
 import MainNavigation from './navigation/MainNavigation';
-import userReducer from '../store/reducers/user'
+import userReducer from '../store/reducers/user';
 
-const store = combineReducers({
-  userReducer: userReducer
-})
+const rootReducer = combineReducers({
+  userReducer: userReducer,
+});
+
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const App = () => {
   return (
-    <Provider store = {store}>
+    <Provider store={store}>
       <MainNavigation />
     </Provider>
   );

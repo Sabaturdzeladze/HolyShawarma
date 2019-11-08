@@ -8,11 +8,22 @@
 
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
+import {Provider} from 'react-redux';
+import {combineReducers, createStore} from 'redux';
 
 import MainNavigation from './navigation/MainNavigation';
+import userReducer from '../store/reducers/user'
+
+const store = combineReducers({
+  userReducer: userReducer
+})
 
 const App = () => {
-  return <MainNavigation />;
+  return (
+    <Provider store = {store}>
+      <MainNavigation />
+    </Provider>
+  );
 };
 
 const styles = StyleSheet.create({});

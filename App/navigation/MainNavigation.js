@@ -4,7 +4,7 @@ import AuthScreen from '../screens/AuthScreen';
 import BottomNavigator from './BottomNavigator';
 
 const MainNavigator = createSwitchNavigator({
-  // Auth: AuthScreen,
+  Auth: AuthScreen,
   Home: BottomNavigator
 });
 

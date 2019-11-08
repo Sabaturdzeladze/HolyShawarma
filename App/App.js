@@ -16,7 +16,7 @@ import MainNavigation from './navigation/MainNavigation';
 import userReducer from '../store/reducers/user';
 
 const rootReducer = combineReducers({
-  userReducer: userReducer,
+  user: userReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

@@ -5,7 +5,7 @@ const Input = props => {
   return (
     <View style={{...styles.wrapper, ...props.style}}>
       {props.label && <Text style={styles.label}>{props.label}</Text>}
-      <TextInput {...props} style={styles.input} />
+      <TextInput value = {props.value} onChangeText = {props.onChangeText} {...props} style={styles.input} />
     </View>
   );
 };

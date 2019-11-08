@@ -1,32 +1,53 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Card from '../components/UI/Card';
 import Input from '../components/UI/Input';
 import CustomButton from '../components/UI/CustomButton';
-
-
+import {userLogin} from '../../store/actions/user';
 
 const AuthScreen = props => {
   const [authMethod, setAuthMethod] = useState('login');
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
   let pageTitle = 'Login Page';
   let switchButtonTitle = 'Switch to Signup';
   let submitButtonTitle = 'Login';
 
   if (authMethod === 'signup') {
-    pageTitle = 'Signup Page';``
+    pageTitle = 'Signup Page';
+    ``;
     switchButtonTitle = 'Switch to Login';
     submitButtonTitle = 'Signup';
   }
 
+  const changeTextHanlder = (value, state = 'userName') => {
+    state === 'userName' ? setUserName(value) : setPassword(value);
+  };
+  
+  const dispatch = useDispatch()
+  const loginHandler = () => {
+    dispatch(userLogin(userName))
+  };
   return (
     <View style={styles.wrapper}>
       <Card style={styles.card}>
         <Text style={styles.header}>{pageTitle}</Text>
-        <Input style={styles.input} label="userName" />
-        <Input label="password" />
+        <Input
+          value={userName}
+          style={styles.input}
+          label="UserName"
+          onChangeText={value => changeTextHanlder(value)}
+        />
+        <Input
+          value={password}
+          label="Password"
+          onChangeText={value => changeTextHanlder(value, 'password')}
+        />
         <View style={styles.buttonContainer}>
-          <CustomButton title={submitButtonTitle} />
+          <CustomButton onPress={() => loginHandler()} title={submitButtonTitle} />
           <CustomButton
             onPress={() => {
               authMethod === 'login'

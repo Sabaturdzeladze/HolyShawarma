@@ -9,7 +9,7 @@ const CopyableText = props => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        {props.text}:{' '}
+        {props.text}
         {props.account}
       </Text>
       <Icon

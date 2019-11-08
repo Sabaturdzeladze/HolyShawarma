@@ -1,22 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Provider} from 'react-redux';
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 
 import MainNavigation from './navigation/MainNavigation';
 import userReducer from '../store/reducers/user';
+import ordersReducer from '../store/reducers/orders';
 
 const rootReducer = combineReducers({
-  userReducer: userReducer,
+  user: userReducer,
+  orders: ordersReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

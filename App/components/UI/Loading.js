@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 
-const Loading = () => {
-  return <ActivityIndicator size="small" color="#ffffff" />;
+const Loading = props => {
+  return <ActivityIndicator size="small" color="#ffffff" {...props} />;
 };
 
 export default Loading;

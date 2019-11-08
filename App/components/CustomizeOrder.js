@@ -3,7 +3,7 @@ import {View, Button, StyleSheet} from 'react-native';
 
 import Card from './UI/Card';
 import Loading from './UI/Loading';
-import IngredientSwitch from './UI/IngredientSwitch';
+import SwitchLabel from './UI/SwitchLabel';
 import ActionButton from './UI/ActionButton';
 
 const CustomizeOrder = props => {
@@ -30,27 +30,27 @@ const CustomizeOrder = props => {
 
   return (
     <Card style={styles.card}>
-      <IngredientSwitch
+      <SwitchLabel
         label="ხახვით"
         toggleSwitch={value => setWithOnion(value)}
         state={withOnion}
       />
-      <IngredientSwitch
+      <SwitchLabel
         label="ცხარე"
         toggleSwitch={value => setSpicy(value)}
         state={spicy}
       />
-      <IngredientSwitch
+      <SwitchLabel
         label="მაიონეზით"
         toggleSwitch={value => setMayonnaise(value)}
         state={mayonnaise}
       />
-      <IngredientSwitch
+      <SwitchLabel
         label="კეტჩუპით"
         toggleSwitch={value => setKetchup(value)}
         state={ketchup}
       />
-      <IngredientSwitch
+      <SwitchLabel
         label="სველი"
         toggleSwitch={value => setWet(value)}
         state={wet}

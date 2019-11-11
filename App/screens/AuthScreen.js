@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import Card from '../components/UI/Card';
 import Input from '../components/UI/Input';
 import CustomButton from '../components/UI/CustomButton';
-import {userLogin} from '../../store/actions/user';
+import {login, signup} from '../../store/actions/user';
 import ActionButton from '../components/UI/ActionButton';
 
 const AuthScreen = props => {
@@ -29,10 +29,13 @@ const AuthScreen = props => {
   };
 
   const dispatch = useDispatch();
-  const loginHandler = async () => {
+  const authHandler = async () => {
+    const credentials = {userName, password};
+    const action = authMethod === 'login' ? login(credentials) : signup(credentials);
+    
     try {
       setLoading(true);
-      await dispatch(userLogin({userName, password}));
+      await dispatch(action);
       setLoading(false);
       props.navigation.navigate('Home');
     } catch (error) {
@@ -44,7 +47,7 @@ const AuthScreen = props => {
           {
             text: 'OK',
             onPress: () => {
-              console.log('ok pressed');
+              console.log(error);
             },
             style: 'default',
           },
@@ -60,7 +63,7 @@ const AuthScreen = props => {
         <Input
           value={userName}
           style={styles.input}
-          label="UserName"
+          label="Username"
           onChangeText={value => changeTextHanlder(value)}
         />
         <Input
@@ -71,7 +74,7 @@ const AuthScreen = props => {
         <View style={styles.buttonContainer}>
           <ActionButton
             loading={loading}
-            onPress={() => loginHandler()}
+            onPress={() => authHandler()}
             title={submitButtonTitle}
           />
           <CustomButton

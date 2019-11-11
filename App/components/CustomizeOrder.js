@@ -25,7 +25,6 @@ const CustomizeOrder = props => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-    console.log(order);
   };
 
   return (

@@ -1,9 +1,10 @@
 import {USER_LOGIN} from '../actions/user';
 
 let initialState = {
-  user: {},
+  user: {}
 };
 
 export default (state = initialState, action) => {
+  
   return state;
 };

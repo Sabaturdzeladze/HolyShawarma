@@ -19,9 +19,6 @@ const OrderItem = ({item}) => {
 
   const txt = generateText(item);
 
-  // console.log(`------------------------`);
-  // console.log(item);
-
   return (
     <Card>
       <View style={styles.header}>

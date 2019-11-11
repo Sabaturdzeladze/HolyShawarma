@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import Card from '../components/UI/Card';
@@ -23,13 +23,33 @@ const AuthScreen = props => {
     submitButtonTitle = 'Signup';
   }
 
+  let userIsLogedIn = useSelector(state => state.user.user.isLogedIn);
   const changeTextHanlder = (value, state = 'userName') => {
     state === 'userName' ? setUserName(value) : setPassword(value);
   };
-  
-  const dispatch = useDispatch()
-  const loginHandler = () => {
-    dispatch(userLogin(userName))
+
+  const dispatch = useDispatch();
+  const loginHandler = async () => {
+    try {
+      const res = await dispatch(userLogin({userName, password}));
+      
+      props.navigation.navigate('Home');
+    } catch (error) {
+      Alert.alert(
+        'Error ocured',
+        `${error}`,
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              console.log('ok pressed');
+            },
+            style: 'default',
+          },
+        ],
+        {cancelable: false},
+      );
+    }
   };
   return (
     <View style={styles.wrapper}>
@@ -47,7 +67,10 @@ const AuthScreen = props => {
           onChangeText={value => changeTextHanlder(value, 'password')}
         />
         <View style={styles.buttonContainer}>
-          <CustomButton onPress={() => loginHandler()} title={submitButtonTitle} />
+          <CustomButton
+            onPress={() => loginHandler()}
+            title={submitButtonTitle}
+          />
           <CustomButton
             onPress={() => {
               authMethod === 'login'

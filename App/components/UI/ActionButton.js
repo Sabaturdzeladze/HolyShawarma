@@ -8,7 +8,7 @@ const ActionButton = props => {
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={props.onPress}
-      style={styles.screen}>
+      style={{...styles.screen, ...props.style}}>
       {!props.loading ? (
         <Text style={styles.title}>{props.title}</Text>
       ) : (

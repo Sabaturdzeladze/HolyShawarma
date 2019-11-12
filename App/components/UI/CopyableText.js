@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CopyableText = props => {
   const writeToClipboard = async () => {
-    await Clipboard.setString(props.account);
+    await Clipboard.setString(props.account || props.text);
   };
   return (
     <View style={styles.container}>

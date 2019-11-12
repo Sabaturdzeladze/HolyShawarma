@@ -1,4 +1,4 @@
-import {FETCH_ORDERS} from '../actions/orders';
+import {FETCH_ORDERS, SEND_ORDER} from '../actions/orders';
 
 const initialState = {
   orders: [],
@@ -11,8 +11,14 @@ export default (state = initialState, action) => {
         ...state,
         orders: action.orders,
       };
-    default:
-      break;
+    case SEND_ORDER:
+      const updatedOrders = [...state.orders];
+      updatedOrders.push(action.order);
+
+      return {
+        ...state,
+        orders: updatedOrders,
+      };
   }
 
   return state;

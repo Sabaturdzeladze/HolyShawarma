@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, Alert} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Card from '../components/UI/Card';
 import Input from '../components/UI/Input';
 import CustomButton from '../components/UI/CustomButton';
-import {userLogin} from '../../store/actions/user';
+import {login, signup} from '../../store/actions/user';
+import ActionButton from '../components/UI/ActionButton';
 
 const AuthScreen = props => {
   const [authMethod, setAuthMethod] = useState('login');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   let pageTitle = 'Login Page';
   let switchButtonTitle = 'Switch to Signup';
@@ -18,23 +20,28 @@ const AuthScreen = props => {
 
   if (authMethod === 'signup') {
     pageTitle = 'Signup Page';
-    ``;
     switchButtonTitle = 'Switch to Login';
     submitButtonTitle = 'Signup';
   }
 
-  let userIsLogedIn = useSelector(state => state.user.user.isLogedIn);
   const changeTextHanlder = (value, state = 'userName') => {
     state === 'userName' ? setUserName(value) : setPassword(value);
   };
 
   const dispatch = useDispatch();
-  const loginHandler = async () => {
+  const authHandler = async () => {
+    const credentials = {userName, password};
+    const action = authMethod === 'login' ? login : signup;
+
     try {
-      const res = await dispatch(userLogin({userName, password}));
-      
+      setLoading(true);
+      await dispatch(action(credentials));
+      await AsyncStorage.setItem('username', userName);
+      await AsyncStorage.setItem('password', password);
+      setLoading(false);
       props.navigation.navigate('Home');
     } catch (error) {
+      setLoading(false);
       Alert.alert(
         'Error ocured',
         `${error}`,
@@ -42,7 +49,7 @@ const AuthScreen = props => {
           {
             text: 'OK',
             onPress: () => {
-              console.log('ok pressed');
+              console.log(error);
             },
             style: 'default',
           },
@@ -58,7 +65,7 @@ const AuthScreen = props => {
         <Input
           value={userName}
           style={styles.input}
-          label="UserName"
+          label="Username"
           onChangeText={value => changeTextHanlder(value)}
         />
         <Input
@@ -67,8 +74,9 @@ const AuthScreen = props => {
           onChangeText={value => changeTextHanlder(value, 'password')}
         />
         <View style={styles.buttonContainer}>
-          <CustomButton
-            onPress={() => loginHandler()}
+          <ActionButton
+            loading={loading}
+            onPress={() => authHandler()}
             title={submitButtonTitle}
           />
           <CustomButton

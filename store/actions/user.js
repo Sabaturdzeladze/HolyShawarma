@@ -6,7 +6,7 @@ export const USER_SIGNUP = 'USER_SIGNUP';
 export const login = user => {
   return async dispatch => {
     try {
-      let response = await fetch(env.serverUrl + 'login', {
+      let res = await fetch(env.serverUrl + 'login', {
         method: 'POST',
         body: JSON.stringify({user}),
         headers: {
@@ -14,9 +14,9 @@ export const login = user => {
         }
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (response.status >= 400) {
+      if (res.status >= 400) {
         throw new Error(data.error);
       } else {
         return dispatch({type: USER_LOGIN, user: data});

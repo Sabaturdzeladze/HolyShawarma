@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Card from '../components/UI/Card';
 import Input from '../components/UI/Input';
@@ -72,6 +73,7 @@ const AuthScreen = props => {
           value={password}
           label="Password"
           onChangeText={value => changeTextHanlder(value, 'password')}
+          secureTextEntry={true}
         />
         <View style={styles.buttonContainer}>
           <ActionButton

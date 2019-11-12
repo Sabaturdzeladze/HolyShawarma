@@ -21,10 +21,10 @@ const ActionButton = props => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    width: 100,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 30,
+    height: 35,
     backgroundColor: '#0000ff',
     borderRadius: 2,
     alignSelf: 'center'

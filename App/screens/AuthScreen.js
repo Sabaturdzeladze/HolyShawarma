@@ -44,14 +44,12 @@ const AuthScreen = props => {
     } catch (error) {
       setLoading(false);
       Alert.alert(
-        'Error ocured',
+        'Error occured',
         `${error}`,
         [
           {
             text: 'OK',
-            onPress: () => {
-              console.log(error);
-            },
+            onPress: () => {},
             style: 'default',
           },
         ],
@@ -75,20 +73,23 @@ const AuthScreen = props => {
           onChangeText={value => changeTextHanlder(value, 'password')}
           secureTextEntry={true}
         />
-        <View style={styles.buttonContainer}>
+        <View style={styles.actionsContainer}>
+          <View style={styles.buttonContainer}>
+            <ActionButton
+              loading={loading}
+              onPress={authHandler}
+              title={submitButtonTitle}
+              style={styles.actionBtn}
+            />
+          </View>
           <ActionButton
-            loading={loading}
-            onPress={() => authHandler()}
-            title={submitButtonTitle}
-          />
-          <CustomButton
             onPress={() => {
               authMethod === 'login'
                 ? setAuthMethod('signup')
                 : setAuthMethod('login');
             }}
-            color="#90ee90"
             title={switchButtonTitle}
+            style={{...styles.actionBtn, backgroundColor: '#90ee90'}}
           />
         </View>
       </Card>
@@ -109,13 +110,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'blue',
   },
-  buttonContainer: {
+  actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
   },
   input: {
     marginBottom: 20,
+  },
+  buttonContainer: {
+    width: '45%',
+    marginRight: 5,
   },
 });
 

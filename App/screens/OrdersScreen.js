@@ -45,7 +45,7 @@ const OrdersScreen = props => {
 
   return (
     <>
-      {orders && <OrdersSummary orders={orders} />}
+      <OrdersSummary orders={orders} />
       <FlatList
         data={orders}
         keyExtractor={item => item._id}

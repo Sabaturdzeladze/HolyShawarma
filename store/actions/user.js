@@ -15,9 +15,9 @@ export const login = user => {
       });
 
       const data = await response.json();
-   
+
       if (response.status >= 400) {
-        throw new Error(data.error)
+        throw new Error(data.error);
       } else {
         return dispatch({type: USER_LOGIN, user: data});
       }
@@ -29,7 +29,6 @@ export const login = user => {
 
 export const signup = user => {
   return async dispatch => {
-    console.log('here')
     try {
       let response = await fetch(env.serverUrl + 'register', {
         method: 'POST',
@@ -40,9 +39,8 @@ export const signup = user => {
       });
 
       const data = await response.json();
-        console.log(data)
       if (response.status >= 400) {
-        throw new Error(data.error)
+        throw new Error(data.error);
       } else {
         return dispatch({type: USER_LOGIN, user: data});
       }

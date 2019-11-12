@@ -31,11 +31,13 @@ const AuthScreen = props => {
   const dispatch = useDispatch();
   const authHandler = async () => {
     const credentials = {userName, password};
-    const action = authMethod === 'login' ? login(credentials) : signup(credentials);
-    
+    const action = authMethod === 'login' ? login : signup;
+
     try {
       setLoading(true);
-      await dispatch(action);
+      await dispatch(action(credentials));
+      await AsyncStorage.setItem('username', userName);
+      await AsyncStorage.setItem('password', password);
       setLoading(false);
       props.navigation.navigate('Home');
     } catch (error) {

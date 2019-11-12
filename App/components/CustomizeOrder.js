@@ -1,30 +1,40 @@
 import React, {useState} from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import Card from './UI/Card';
-import Loading from './UI/Loading';
 import SwitchLabel from './UI/SwitchLabel';
 import ActionButton from './UI/ActionButton';
+import * as orderActions from '../../store/actions/orders';
 
 const CustomizeOrder = props => {
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [withOnion, setWithOnion] = useState(false);
   const [spicy, setSpicy] = useState(false);
   const [mayonnaise, setMayonnaise] = useState(true);
   const [ketchup, setKetchup] = useState(true);
   const [wet, setWet] = useState(false);
 
-  const placeOrderHandler = () => {
+  const dispatch = useDispatch();
+
+  const placeOrderHandler = async () => {
     setIsLoading(true);
     const order = {
       spicy,
       mayonnaise,
       ketchup,
       wet,
+      withOnion
     };
-    setTimeout(() => {
+    try {
+      await dispatch(orderActions.sendOrder(order));
       setIsLoading(false);
-    }, 1000);
+      setSuccess(true);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
   };
 
   return (

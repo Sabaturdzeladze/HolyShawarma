@@ -25,12 +25,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 35,
-    backgroundColor: '#0000ff',
+    backgroundColor: '#2398EF',
     borderRadius: 2,
     alignSelf: 'center'
   },
   title: {
     color: '#fff',
+    fontWeight:'bold'
   },
 });
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, Alert} from 'react-native';
+import {View, StyleSheet, Text, Alert , Image} from 'react-native';
 import {useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -57,7 +57,8 @@ const AuthScreen = props => {
   };
   return (
     <View style={styles.wrapper}>
-      <Card style={styles.card}>
+     <View style={styles.xstqsh}>
+     <Card style={styles.card}>
         <Text style={styles.header}>{pageTitle}</Text>
         <Input
           value={userName}
@@ -87,30 +88,43 @@ const AuthScreen = props => {
                 : setAuthMethod('login');
             }}
             title={switchButtonTitle}
-            style={{...styles.actionBtn, backgroundColor: '#90ee90'}}
+            style={{...styles.actionBtn, backgroundColor: '#FF5908'}}
           />
         </View>
       </Card>
+      <View style={{alignItems:'center' , marginBottom: 50}}>
+        <Image source={require('../../assets/img/shawarman.jpg')} style={{width: '100%',height:'70%' }}/>
+      </View>
+     </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    justifyContent: 'center',
-    flex: 1,
+
+    backgroundColor:'#FFCD9C',
+    height:'100%'
+    
+    
   },
   card: {
     paddingBottom: 20,
+    marginTop: 250,
+
+    
   },
   header: {
     marginBottom: 25,
     fontSize: 20,
-    color: 'blue',
+    color: '#FF5908',
+    alignSelf: 'center',
+    fontWeight: 'bold',
   },
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+
     marginTop: 20,
   },
   input: {
@@ -120,6 +134,10 @@ const styles = StyleSheet.create({
     width: '45%',
     marginRight: 5,
   },
+  xstqsh: {
+    justifyContent: 'center',
+    height:'100%'
+  }
 });
 
 export default AuthScreen;

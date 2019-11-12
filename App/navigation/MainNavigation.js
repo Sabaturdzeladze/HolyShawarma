@@ -5,7 +5,7 @@ import BottomNavigator from './BottomNavigator';
 import StartupScreen from '../screens/StartupScreen';
 
 const MainNavigator = createSwitchNavigator({
-  Startup: StartupScreen,
+  // Startup: StartupScreen,
   Auth: AuthScreen,
   Home: BottomNavigator
 });

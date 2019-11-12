@@ -15,7 +15,7 @@ const CopyableText = props => {
       <Icon
         name="content-copy"
         size={20}
-        color="#ccc"
+        color="#FF5908"
         onPress={writeToClipboard}
       />
     </View>
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    fontWeight:'bold'
   },
 });
 

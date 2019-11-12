@@ -5,11 +5,13 @@ import Card from '../components/UI/Card';
 import CopyableText from '../components/UI/CopyableText';
 import CustomizeOrder from '../components/CustomizeOrder';
 
+
+
 const HomeScreen = props => {
   return (
     <ScrollView style={styles.screen}>
       <Card style={styles.accounts}>
-        <CopyableText text="TBC: " account="GE04TB7425645061600033" />
+        <CopyableText text="TBC: " account="GE04TB7425645061600033"/>
         <CopyableText text="BG: " account="GE04TB7425645061600033" />
       </Card>
       <CustomizeOrder />
@@ -19,9 +21,19 @@ const HomeScreen = props => {
 
 HomeScreen.navigationOptions = navData => {
   return {
+ 
+
     headerTitle: 'დაამატე შეკვეთა',
+    headerTitleContainerStyle: {
+      backgroundColor:'#FF5908',
+      alignItems: 'center',
+      justifyContent:'center'
+    },
     headerTitleStyle: {
-      fontSize: 15
+      fontSize: 15,
+      color:'#fff' ,
+      fontWeight: 'bold',
+    
     }
   }
 }

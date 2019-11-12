@@ -62,10 +62,13 @@ const CustomizeOrder = props => {
       <SwitchLabel
         label="სველი"
         toggleSwitch={value => setWet(value)}
+
+
         state={wet}
       />
       <View style={styles.action}>
         <ActionButton
+        style={styles.button}
           title="დამატება"
           onPress={placeOrderHandler}
           loading={isLoading}
@@ -79,6 +82,9 @@ const styles = StyleSheet.create({
   action: {
     marginTop: 20,
   },
+  button : {
+    backgroundColor : '#FF5908'
+  }
 });
 
 export default CustomizeOrder;

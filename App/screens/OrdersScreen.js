@@ -58,8 +58,15 @@ const OrdersScreen = props => {
 OrdersScreen.navigationOptions = navData => {
   return {
     headerTitle: 'შეკვეთები',
+    headerTitleContainerStyle:{
+      backgroundColor:'#FF5908',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     headerTitleStyle: {
       fontSize: 15,
+      color:'#fff',
+      fontWeight: 'bold'
     },
   };
 };

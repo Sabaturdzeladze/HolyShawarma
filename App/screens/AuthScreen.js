@@ -37,8 +37,6 @@ const AuthScreen = props => {
     try {
       setLoading(true);
       await dispatch(action(credentials));
-      await AsyncStorage.setItem('username', userName);
-      await AsyncStorage.setItem('password', password);
       setLoading(false);
       props.navigation.navigate('Home');
     } catch (error) {

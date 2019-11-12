@@ -23,6 +23,7 @@ const OrderItem = ({item}) => {
     <Card>
       <View style={styles.header}>
         <SwitchLabel
+        style={{}}
           label={`User: ${item.user.userName}`}
           state={checked}
           toggleSwitch={value => setChecked(value)}

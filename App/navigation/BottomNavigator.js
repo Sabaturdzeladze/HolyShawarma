@@ -4,6 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import HomeNavigator from './HomeNavigation';
 import OrderNavigator from './OrderNavigation';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { useDispatch } from 'react-redux';
+
+
 
 const BottomNavigator = createBottomTabNavigator({
   Home: {
@@ -11,8 +15,11 @@ const BottomNavigator = createBottomTabNavigator({
     navigationOptions: ({navigation}) => {
       return {
         tabBarIcon: () => {
-          return <Icon name="home" size={20} color="red" />;
+          return <Icon name="home" size={20} color="#FF5908" />;
         },
+        tabBarOptions : {
+          activeTintColor: '#FF5908'
+        }
       };
     },
   },
@@ -21,8 +28,11 @@ const BottomNavigator = createBottomTabNavigator({
     navigationOptions: ({navigation}) => {
       return {
         tabBarIcon: () => {
-          return <Icon name="shopping-cart" size={20} color="red" />;
+          return <Icon name="shopping-cart" size={20} color="#FF5908" />;
         },
+        tabBarOptions : {
+          activeTintColor: '#FF5908'
+        }
       };
     },
   },

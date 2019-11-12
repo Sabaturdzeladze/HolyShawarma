@@ -2,6 +2,7 @@ import env from '../../env';
 
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_SIGNUP = 'USER_SIGNUP';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 export const login = user => {
   return async dispatch => {
@@ -49,3 +50,7 @@ export const signup = user => {
     }
   };
 }
+
+export const logout = () => {
+  return {type : USER_LOGOUT}
+};

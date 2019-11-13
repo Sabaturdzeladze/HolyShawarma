@@ -9,7 +9,6 @@ import * as orderActions from '../../store/actions/orders';
 
 const CustomizeOrder = props => {
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [withOnion, setWithOnion] = useState(false);
   const [spicy, setSpicy] = useState(false);
   const [mayonnaise, setMayonnaise] = useState(true);
@@ -28,9 +27,9 @@ const CustomizeOrder = props => {
       withOnion
     };
     try {
-      const res = await dispatch(orderActions.sendOrder(order));
+      await dispatch(orderActions.sendOrder(order));
+      props.onSuccessChange();
       setIsLoading(false);
-      setSuccess(true);
     } catch (error) {
       setIsLoading(false);
     }

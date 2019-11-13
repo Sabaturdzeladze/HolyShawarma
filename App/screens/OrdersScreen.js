@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {FlatList, StyleSheet, View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -9,23 +9,28 @@ import Loading from '../components/UI/Loading';
 
 const OrdersScreen = props => {
   const [loading, setLoading] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const orders = useSelector(state => state.orders.orders);
 
   const dispatch = useDispatch();
 
+  const fetchOrders = useCallback(async () => {
+    setIsRefreshing(true);
+    try {
+      await dispatch(ordersActions.fetchOrders());
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsRefreshing(false);
+    }
+  }, [dispatch, setIsRefreshing]);
+
   useEffect(() => {
     setLoading(true);
-    const fetchOrders = async () => {
-      try {
-        await dispatch(ordersActions.fetchOrders());
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchOrders();
-  }, [setLoading]);
+    fetchOrders()
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
+  }, [setLoading, fetchOrders]);
 
   if (loading) {
     return (
@@ -50,6 +55,8 @@ const OrdersScreen = props => {
         data={orders}
         keyExtractor={item => item._id}
         renderItem={({item}) => <OrderItem item={item} />}
+        refreshing={isRefreshing}
+        onRefresh={fetchOrders}
       />
     </>
   );
@@ -58,15 +65,15 @@ const OrdersScreen = props => {
 OrdersScreen.navigationOptions = navData => {
   return {
     headerTitle: 'შეკვეთები',
-    headerTitleContainerStyle:{
-      backgroundColor:'#FF5908',
+    headerTitleContainerStyle: {
+      backgroundColor: '#FF5908',
       alignItems: 'center',
       justifyContent: 'center',
     },
     headerTitleStyle: {
       fontSize: 15,
-      color:'#fff',
-      fontWeight: 'bold'
+      color: '#fff',
+      fontWeight: 'bold',
     },
   };
 };
@@ -76,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
+  }
 });
 
 export default OrdersScreen;

@@ -47,9 +47,9 @@ const OrderItem = ({item}) => {
       {user._id === item.user._id && (
         <View style={styles.removeWrapper}>
           <Icon
-            size={23}
-            name="remove-circle"
-            color="red"
+            size={33}
+            name="delete"
+            color="#FF5908"
             onPress={removeOrderHandler}
           />
         </View>
@@ -59,12 +59,19 @@ const OrderItem = ({item}) => {
 };
 
 const styles = StyleSheet.create({
-  header: {},
+  header: {
+
+  },
   removeWrapper: {
     paddingTop: 10,
-    alignItems: 'flex-end',
+    alignItems: 'center',
     paddingRight: 10,
   },
+  text: {
+    fontSize: 15 ,
+    textAlign: 'center' ,
+  },
+  name : {}
 });
 
 export default OrderItem;

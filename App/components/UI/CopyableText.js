@@ -23,6 +23,7 @@ const CopyableText = props => {
         {props.account}
       </Text>
       <Icon
+      style={{marginTop: 20}}
         name="content-copy"
         size={20}
         color={isCopied ? 'seagreen' : '#FF5908'}
@@ -38,7 +39,9 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   text: {
+    marginTop: 20,
     flex: 1,
+    textAlign:'center',
     fontWeight: 'bold',
   },
 });

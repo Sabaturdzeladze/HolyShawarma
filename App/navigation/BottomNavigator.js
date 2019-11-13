@@ -31,7 +31,7 @@ const BottomNavigator = createBottomTabNavigator({
           return <Icon name="shopping-cart" size={20} color="#FF5908" />;
         },
         tabBarOptions : {
-          activeTintColor: '#FF5908'
+          activeTintColor: '#FF5908',
         }
       };
     },

@@ -8,6 +8,8 @@ const MainNavigator = createSwitchNavigator({
   Startup: StartupScreen,
   Auth: AuthScreen,
   Home: BottomNavigator
-});
+}
+
+);
 
 export default createAppContainer(MainNavigator);

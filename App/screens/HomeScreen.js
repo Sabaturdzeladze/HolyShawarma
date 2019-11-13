@@ -39,7 +39,7 @@ const HomeScreen = props => {
     <ScrollView style={styles.screen}>
       <Card style={styles.accounts}>
         <CopyableText text="TBC: " account="GE04TB7425645061600033" />
-        <CopyableText text="BG: " account="GE04TB7425645061600033" />
+        <CopyableText text=" BG: " account="GE04TB7425645061600033" />
       </Card>
       <CustomizeOrder onSuccessChange={successChangeHandler} />
 

@@ -4,7 +4,7 @@ import {View, Text, Switch, StyleSheet} from 'react-native';
 const IngredientSwitch = props => {
   return (
     <View style={styles.filterContainer}>
-      <Text style={styles.Color}>{props.label}</Text>
+      <Text style={styles.Color}><Text style={styles.user}> </Text>{props.label}</Text>
       <Switch
        trackColor="#FF5908"
        thumbColor="#ccc"
@@ -25,8 +25,14 @@ const styles = StyleSheet.create({
     marginVertical: 5
   },
   Color :{
+    color: '#FF5908',
+    fontWeight:'bold',
+    fontSize: 17 ,
+    padding:5 ,
+  } ,
+  user: {
     color: '#000',
-    fontWeight:'bold'
+    fontSize:17
   }
 });
 

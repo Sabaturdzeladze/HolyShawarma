@@ -28,12 +28,11 @@ const CustomizeOrder = props => {
       withOnion
     };
     try {
-      await dispatch(orderActions.sendOrder(order));
+      const res = await dispatch(orderActions.sendOrder(order));
       setIsLoading(false);
       setSuccess(true);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
     }
   };
 

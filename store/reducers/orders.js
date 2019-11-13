@@ -1,4 +1,4 @@
-import {FETCH_ORDERS, SEND_ORDER} from '../actions/orders';
+import {FETCH_ORDERS, SEND_ORDER, DELETE_ORDER} from '../actions/orders';
 
 const initialState = {
   orders: [],
@@ -18,6 +18,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         orders: updatedOrders,
+      };
+    case DELETE_ORDER:
+      const updatedAfterRemoveOrders = state.orders.filter(
+        order => order._id !== action.order._id,
+      );
+
+      return {
+        ...state,
+        orders: updatedAfterRemoveOrders,
       };
   }
 

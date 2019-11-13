@@ -7,7 +7,7 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const login = user => {
   return async dispatch => {
     try {
-      let res = await fetch(env.serverUrl + 'login', {
+      let res = await fetch(env.usersUrl + '/login', {
         method: 'POST',
         body: JSON.stringify({user}),
         headers: {
@@ -31,7 +31,7 @@ export const login = user => {
 export const signup = user => {
   return async dispatch => {
     try {
-      let response = await fetch(env.serverUrl + 'register', {
+      let response = await fetch(env.usersUrl + '/register', {
         method: 'POST',
         body: JSON.stringify({user}),
         headers: {

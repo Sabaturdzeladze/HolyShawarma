@@ -24,7 +24,7 @@ const CustomizeOrder = props => {
       mayonnaise,
       ketchup,
       wet,
-      withOnion
+      onion: withOnion
     };
     try {
       await dispatch(orderActions.sendOrder(order));

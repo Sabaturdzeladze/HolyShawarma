@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-community/async-storage';
+
 import env from '../../env';
 
 export const USER_LOGIN = 'USER_LOGIN';
@@ -11,8 +13,8 @@ export const login = user => {
         method: 'POST',
         body: JSON.stringify({user}),
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
 
       const data = await res.json();
@@ -20,6 +22,8 @@ export const login = user => {
       if (res.status >= 400) {
         throw new Error(data.error);
       } else {
+        await AsyncStorage.setItem('username', user.userName);
+        await AsyncStorage.setItem('password', user.password);
         return dispatch({type: USER_LOGIN, user: data});
       }
     } catch (error) {
@@ -35,22 +39,24 @@ export const signup = user => {
         method: 'POST',
         body: JSON.stringify({user}),
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
 
       const data = await response.json();
       if (response.status >= 400) {
         throw new Error(data.error);
       } else {
+        await AsyncStorage.setItem('username', user.userName);
+        await AsyncStorage.setItem('password', user.password);
         return dispatch({type: USER_LOGIN, user: data});
       }
     } catch (error) {
       throw error;
     }
   };
-}
+};
 
 export const logout = () => {
-  return {type : USER_LOGOUT}
+  return {type: USER_LOGOUT};
 };

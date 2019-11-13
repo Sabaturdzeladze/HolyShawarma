@@ -1,4 +1,9 @@
-import {FETCH_ORDERS, SEND_ORDER, DELETE_ORDER} from '../actions/orders';
+import {
+  FETCH_ORDERS,
+  SEND_ORDER,
+  DELETE_ORDER,
+  SET_PAYMENT_SUCCESS,
+} from '../actions/orders';
 
 const initialState = {
   orders: [],
@@ -27,6 +32,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         orders: updatedAfterRemoveOrders,
+      };
+    case SET_PAYMENT_SUCCESS:
+      const changedOrdersAfterPayment = [...state.orders];
+      const changedOrder = changedOrdersAfterPayment.find(
+        order => order._id === action.orderId,
+      );
+      changedOrder.paymentSuccess = action.paymentSuccess;
+      return {
+        ...state,
+        orders: changedOrdersAfterPayment,
       };
   }
 

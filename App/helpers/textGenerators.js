@@ -24,7 +24,7 @@ export const generateComment = (orders) => {
   let orderTxt = '';
   for (const text in ordersDetails) {
     const element = ordersDetails[text];
-    orderTxt += `${element.quantity} ${text} `;
+    orderTxt += `${element.quantity} - ${text} `;
   }
   return orderTxt.slice(0, orderTxt.length - 1);
 }

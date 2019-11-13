@@ -9,9 +9,8 @@ export const generateOrderText = order => {
 };
 
 export const generateComment = (orders) => {
-  const tempOrders = [...orders];
   const ordersDetails = {};
-  tempOrders.forEach(order => {
+  orders.forEach(order => {
     const text = generateOrderText(order);
     if (ordersDetails[text]) {
       ordersDetails[text].quantity++;

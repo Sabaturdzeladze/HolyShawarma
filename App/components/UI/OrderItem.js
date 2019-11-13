@@ -22,7 +22,7 @@ const OrderItem = ({item}) => {
 
   const paymentChangeHandler = async state => {
     try {
-      console.log(state)
+      console.log(state);
       await dispatch(ordersActions.setPaymentForOrder(item._id, state));
       setChecked(state);
     } catch (error) {
@@ -47,7 +47,7 @@ const OrderItem = ({item}) => {
       {user._id === item.user._id && (
         <View style={styles.removeWrapper}>
           <Icon
-            size={33}
+            size={28}
             name="delete"
             color="#FF5908"
             onPress={removeOrderHandler}
@@ -59,19 +59,16 @@ const OrderItem = ({item}) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-
-  },
+  header: {},
   removeWrapper: {
     paddingTop: 10,
     alignItems: 'center',
     paddingRight: 10,
   },
   text: {
-    fontSize: 15 ,
-    textAlign: 'center' ,
+    fontSize: 15,
+    textAlign: 'center',
   },
-  name : {}
 });
 
 export default OrderItem;

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   Color: {
-    fontSize: 17,
+    fontSize: 13,
     color: '#000',
     padding: 5,
   },

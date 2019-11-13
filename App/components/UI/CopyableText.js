@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, Clipboard} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CopyableText = props => {
+  const [isCopied, setIsCopied] = useState(false);
+
   const writeToClipboard = async () => {
-    await Clipboard.setString(props.account || props.text);
+    try {
+      await Clipboard.setString(props.account || props.text);
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 1000);
+    } catch (error) {
+      setIsCopied(false);
+    }
   };
   return (
     <View style={styles.container}>
@@ -15,7 +25,7 @@ const CopyableText = props => {
       <Icon
         name="content-copy"
         size={20}
-        color="#FF5908"
+        color={isCopied ? 'seagreen' : '#FF5908'}
         onPress={writeToClipboard}
       />
     </View>
@@ -29,7 +39,7 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
 });
 

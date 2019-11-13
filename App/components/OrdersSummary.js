@@ -2,11 +2,13 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 import Card from '../components/UI/Card';
-
 import CopyableText from './UI/CopyableText';
+import { generateComment } from '../helpers/textGenerators';
 
 const OrdersSummary = ({orders}) => {
   const {length} = orders;
+
+  const comment = generateComment(orders);
 
   return (
     <View style={{alignItems: 'center'}}>
@@ -22,7 +24,7 @@ const OrdersSummary = ({orders}) => {
         <Text style={{textAlign: 'center'}}>
           კომენტარი საშაურმეს (გონებაშეზღუდულთათვის):
         </Text>
-        <CopyableText />
+        <CopyableText text={comment} />
       </Card>
     </View>
   );

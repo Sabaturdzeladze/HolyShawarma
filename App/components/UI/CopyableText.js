@@ -1,41 +1,39 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Clipboard} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet, Clipboard} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 const CopyableText = props => {
-  const [isCopied, setIsCopied] = useState(false);
-
   const writeToClipboard = async () => {
     try {
       await Clipboard.setString(props.account || props.text);
-      setIsCopied(true);
-      setTimeout(() => {
-        setIsCopied(false);
-      }, 1000);
+      showMessage({
+        message: 'Copied to Clipboard.',
+      });
     } catch (error) {
-      setIsCopied(false);
+      showMessage({
+        message: 'Failed to Copy.',
+      });
     }
   };
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={writeToClipboard}
+      activeOpacity={0.7}>
       <Text style={styles.text}>
         {props.text}
         {props.account}
       </Text>
-      <Icon
-        name="content-copy"
-        size={20}
-        color={isCopied ? 'seagreen' : '#FF5908'}
-        onPress={writeToClipboard}
-      />
-    </View>
+      <Icon name="content-copy" size={20} color="#FF5908" />
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginTop: 10
+    marginTop: 10,
   },
   text: {
     flex: 1,

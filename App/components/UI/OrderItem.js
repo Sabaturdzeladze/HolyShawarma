@@ -22,7 +22,6 @@ const OrderItem = ({item}) => {
 
   const paymentChangeHandler = async state => {
     try {
-      console.log(state);
       await dispatch(ordersActions.setPaymentForOrder(item._id, state));
       setChecked(state);
     } catch (error) {

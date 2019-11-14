@@ -3,14 +3,15 @@ import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 import Loading from './Loading';
 
-const ActionButton = props => {
+const ActionButton = ({style, loading, title, ...props}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={props.onPress}
-      style={{...styles.screen, ...props.style}}>
-      {!props.loading ? (
-        <Text style={styles.title}>{props.title}</Text>
+      {...props}
+      disabled={loading}
+      style={{...styles.screen, ...style}}>
+      {!loading ? (
+        <Text style={styles.title}>{title}</Text>
       ) : (
         <Loading />
       )}

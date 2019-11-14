@@ -66,7 +66,7 @@ const CustomizeOrder = props => {
       />
       <View style={styles.action}>
         <ActionButton
-        style={styles.button}
+          style={styles.button}
           title="დამატება"
           onPress={placeOrderHandler}
           loading={isLoading}

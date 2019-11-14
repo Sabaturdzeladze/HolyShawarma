@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
@@ -31,19 +31,27 @@ const OrderItem = ({item}) => {
   };
 
   return (
-    <Card>
-      <View style={styles.header}>
-        {!user.isAdmin ? (
-          <Text>User: {item.user.userName}</Text>
-        ) : (
-          <SwitchLabel
-            label={`User: ${item.user.userName}`}
-            state={checked}
-            toggleSwitch={value => paymentChangeHandler(value)}
-          />
-        )}
+    <Card style={styles.card}>
+      <View>
+        <View style={styles.header}>
+          {!user.isAdmin ? (
+            <View style={styles.userPlace}>
+              <Text style={styles.user}>
+                User : <Text style={styles.userName}>{item.user.userName}</Text>
+              </Text>
+            </View>
+          ) : (
+            <SwitchLabel
+              label={`User: ${item.user.userName}`}
+              state={checked}
+              toggleSwitch={value => paymentChangeHandler(value)}
+            />
+          )}
+        </View>
+        <View style={styles.textPlace}>
+          <Text style={styles.text}>{txt}</Text>
+        </View>
       </View>
-      <Text>{txt}</Text>
       {user._id === item.user._id && (
         <View style={styles.removeWrapper}>
           <Icon
@@ -59,7 +67,13 @@ const OrderItem = ({item}) => {
 };
 
 const styles = StyleSheet.create({
-  header: {},
+  card : {
+    flexDirection:'row',
+    justifyContent :'space-between'
+  },
+  userPlace: {
+    padding: 5,
+  },
   removeWrapper: {
     paddingTop: 10,
     alignItems: 'center',
@@ -68,6 +82,18 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     textAlign: 'center',
+  },
+  user: {
+    fontWeight: 'bold',
+    fontSize: 15,
+  },
+  userName: {
+    color: '#FF5908',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  text: {
+    alignItems: 'center',
   },
 });
 

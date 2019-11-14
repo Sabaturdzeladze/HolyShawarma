@@ -1,15 +1,18 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import Input from '../components/UI/Input';
 
 import Card from '../components/UI/Card';
 import CopyableText from '../components/UI/CopyableText';
 import CustomizeOrder from '../components/CustomizeOrder';
 import * as userActions from '../../store/actions/user';
+import ActionButton from '../components/UI/ActionButton';
 
 const HomeScreen = props => {
   const [orderSuccessful, setOrderSuccessful] = useState(false);
+  const isAdmin = useSelector(props => props.user.user).isAdmin;
   const dispatch = useDispatch();
 
   const {navigation} = props;
@@ -22,7 +25,7 @@ const HomeScreen = props => {
   useEffect(() => {
     navigation.setParams({logout: logoutHandler});
   }, [dispatch]);
-  
+
   const successChangeHandler = () => {
     setOrderSuccessful(prevState => !prevState);
   };
@@ -31,16 +34,23 @@ const HomeScreen = props => {
     if (orderSuccessful) {
       setTimeout(() => {
         setOrderSuccessful(false);
-      }, 1000);
+      }, 2500);
     }
-  }, [orderSuccessful])
+  }, [orderSuccessful]);
 
   return (
     <ScrollView style={styles.screen}>
       <Card style={styles.accounts}>
         <CopyableText text="TBC: " account="GE04TB7425645061600033" />
-        <CopyableText text=" BG: " account="GE04TB7425645061600033" />
+        <CopyableText text="BOG: " account="GE04TB7425645061600033" />
       </Card>
+      {isAdmin && (
+        <Card>
+          <Input label="TBC"  />
+          <Input label="BOG" />
+          <ActionButton title="შეცვლა"  style={styles.button}/>
+        </Card>
+      )}
       <CustomizeOrder onSuccessChange={successChangeHandler} />
 
       {orderSuccessful && (
@@ -79,6 +89,9 @@ const styles = StyleSheet.create({
   success: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  button :{
+    marginTop: 15
   },
 });
 

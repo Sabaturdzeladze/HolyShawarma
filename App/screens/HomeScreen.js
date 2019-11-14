@@ -1,5 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View, Text} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  KeyboardAvoidingView,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import Input from '../components/UI/Input';
@@ -40,26 +46,30 @@ const HomeScreen = props => {
   }, [orderSuccessful]);
 
   return (
-    <ScrollView style={styles.screen}>
-      <Card style={styles.accounts}>
-        <CopyableText text="TBC: " account="GE04TB7425645061600033" />
-        <CopyableText text="BOG: " account="GE04TB7425645061600033" />
-      </Card>
-      {isAdmin && (
-        <Card>
-          <Input label="TBC"  />
-          <Input label="BOG" />
-          <ActionButton title="შეცვლა"  style={styles.button}/>
-        </Card>
-      )}
-      <CustomizeOrder onSuccessChange={successChangeHandler} />
 
-      {orderSuccessful && (
-        <View style={styles.success}>
-          <Icon name="check-circle" size={30} color="green" />
-        </View>
-      )}
-    </ScrollView>
+      <ScrollView style={styles.screen}>
+        <KeyboardAvoidingView behavior='padding'>
+        <Card style={styles.accounts}>
+          <CopyableText text="TBC: " account="GE04TB7425645061600033" />
+          <CopyableText text="BOG: " account="GE04TB7425645061600033" />
+        </Card>
+        {isAdmin && (
+          <Card>
+            <Input label="TBC" />
+            <Input label="BOG" />
+            <ActionButton title="შეცვლა" style={styles.button} />
+          </Card>
+        )}
+
+        <CustomizeOrder onSuccessChange={successChangeHandler} />
+
+        {orderSuccessful && (
+          <View style={styles.success}>
+            <Icon name="check-circle" size={30} color="green" />
+          </View>
+        )}
+        </KeyboardAvoidingView>
+      </ScrollView>
   );
 };
 
@@ -91,8 +101,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  button :{
-    marginTop: 15
+  button: {
+    marginTop: 15,
   },
 });
 

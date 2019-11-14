@@ -13,7 +13,7 @@ const ActionButton = ({style, loading, title, ...props}) => {
       {!loading ? (
         <Text style={styles.title}>{title}</Text>
       ) : (
-        <Loading />
+        <Loading color="#fff" />
       )}
     </TouchableOpacity>
   );

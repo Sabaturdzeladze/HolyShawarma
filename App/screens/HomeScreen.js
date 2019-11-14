@@ -1,18 +1,14 @@
 import React, {useCallback, useEffect} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch, useSelector} from 'react-redux';
-import Input from '../components/UI/Input';
+import {useDispatch} from 'react-redux';
 
-import Card from '../components/UI/Card';
-import CopyableText from '../components/UI/CopyableText';
 import CustomizeOrder from '../components/CustomizeOrder';
 import * as userActions from '../../store/actions/user';
-import ActionButton from '../components/UI/ActionButton';
 import Colors from '../Constants/Colors';
+import BankAccounts from '../components/BankAccounts';
 
 const HomeScreen = props => {
-  const isAdmin = useSelector(props => props.user.user).isAdmin;
   const dispatch = useDispatch();
 
   const {navigation} = props;
@@ -28,17 +24,7 @@ const HomeScreen = props => {
 
   return (
     <ScrollView style={styles.screen}>
-      <Card style={styles.accounts}>
-        <CopyableText text="TBC: " account="GE04TB7425645061600033" />
-        <CopyableText text="BOG: " account="GE04TB7425645061600033" />
-      </Card>
-      {isAdmin && (
-        <Card>
-          <Input label="TBC" />
-          <Input label="BOG" />
-          <ActionButton title="შეცვლა" style={styles.button} />
-        </Card>
-      )}
+      <BankAccounts />
       <CustomizeOrder />
     </ScrollView>
   );

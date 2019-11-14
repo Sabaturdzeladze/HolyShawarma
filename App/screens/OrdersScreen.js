@@ -36,7 +36,7 @@ const OrdersScreen = props => {
   if (loading) {
     return (
       <View style={styles.screen}>
-        <Loading size="large" color="#000" />
+        <Loading size="large" />
       </View>
     );
   }

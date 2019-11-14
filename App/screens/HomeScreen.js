@@ -46,9 +46,8 @@ const HomeScreen = props => {
   }, [orderSuccessful]);
 
   return (
-
-      <ScrollView style={styles.screen}>
-        <KeyboardAvoidingView behavior='padding'>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView behavior="padding">
         <Card style={styles.accounts}>
           <CopyableText text="TBC: " account="GE04TB7425645061600033" />
           <CopyableText text="BOG: " account="GE04TB7425645061600033" />
@@ -68,8 +67,8 @@ const HomeScreen = props => {
             <Icon name="check-circle" size={30} color="green" />
           </View>
         )}
-        </KeyboardAvoidingView>
-      </ScrollView>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
@@ -103,6 +102,9 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 15,
+  },
+  input: {
+    marginTop: 10,
   },
 });
 

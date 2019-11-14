@@ -20,9 +20,6 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     width: '100%',
   },
-  label: {
-    marginTop: 15,
-  },
 });
 
 export default Input;

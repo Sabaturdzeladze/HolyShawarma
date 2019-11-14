@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TouchableOpacity, Text, StyleSheet, Clipboard} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import {showMessage} from 'react-native-flash-message';
 import Colors from '../../Constants/Colors';
 
 const CopyableText = props => {

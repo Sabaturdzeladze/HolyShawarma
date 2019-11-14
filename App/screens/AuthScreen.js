@@ -1,16 +1,13 @@
 import React, {useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Alert
-} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {showMessage} from 'react-native-flash-message';
 
 import Card from '../components/UI/Card';
 import Input from '../components/UI/Input';
 import {login, signup} from '../../store/actions/user';
 import ActionButton from '../components/UI/ActionButton';
+import Colors from '../Constants/Colors';
 
 const AuthScreen = props => {
   const [authMethod, setAuthMethod] = useState('login');
@@ -44,18 +41,14 @@ const AuthScreen = props => {
       props.navigation.navigate('Home');
     } catch (error) {
       setLoading(false);
-      Alert.alert(
-        'Error occured',
-        `${error}`,
-        [
-          {
-            text: 'OK',
-            onPress: () => {},
-            style: 'default',
-          },
-        ],
-        {cancelable: false},
-      );
+      showMessage({
+        message: `${error}`,
+        position: {
+          bottom: 10,
+          left: 50,
+          right: 50,
+        },
+      });
     }
   };
   return (
@@ -90,7 +83,7 @@ const AuthScreen = props => {
                 : setAuthMethod('login');
             }}
             title={switchButtonTitle}
-            style={{...styles.actionBtn, backgroundColor: '#FF5908'}}
+            style={{...styles.actionBtn, backgroundColor: Colors.primary}}
           />
         </View>
       </Card>
@@ -107,7 +100,7 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 25,
     fontSize: 20,
-    color: '#FF5908',
+    color: Colors.primary,
     alignSelf: 'center',
     fontWeight: 'bold',
   },

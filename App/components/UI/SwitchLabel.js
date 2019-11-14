@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Switch, StyleSheet} from 'react-native';
+import Colors from '../../Constants/Colors';
 
 const IngredientSwitch = props => {
   return (
@@ -9,9 +10,9 @@ const IngredientSwitch = props => {
         {props.label}
       </Text>
       <Switch
-        trackColor="#FF5908"
+        trackColor={Colors.primary}
         thumbColor="#ccc"
-        thumbColor="#FF5908"
+        thumbColor={Colors.primary}
         value={props.state}
         onValueChange={props.toggleSwitch}
       />

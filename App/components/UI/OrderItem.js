@@ -8,6 +8,7 @@ import Card from './Card';
 import SwitchLabel from './SwitchLabel';
 import * as ordersActions from '../../../store/actions/orders';
 import {generateOrderText} from '../../helpers/textGenerators';
+import Colors from '../../Constants/Colors';
 
 const OrderItem = ({item}) => {
   const [checked, setChecked] = useState(item.paymentSuccess);
@@ -22,7 +23,6 @@ const OrderItem = ({item}) => {
 
   const paymentChangeHandler = async state => {
     try {
-      console.log(state);
       await dispatch(ordersActions.setPaymentForOrder(item._id, state));
       setChecked(state);
     } catch (error) {
@@ -57,7 +57,7 @@ const OrderItem = ({item}) => {
           <Icon
             size={28}
             name="delete"
-            color="#FF5908"
+            color={Colors.primary}
             onPress={removeOrderHandler}
           />
         </View>

@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-community/async-storage';
+
 import env from '../../env';
 
 export const FETCH_ORDERS = 'FETCH_ORDERS';
@@ -43,6 +45,7 @@ export const sendOrder = order => {
       if (res.status >= 400) {
         throw new Error(data.error);
       } else {
+        await AsyncStorage.setItem('order', JSON.stringify(order));
         dispatch({
           type: SEND_ORDER,
           order: data.order,

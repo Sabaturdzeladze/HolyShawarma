@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Card from './UI/Card';
 import SwitchLabel from './UI/SwitchLabel';
 import ActionButton from './UI/ActionButton';
 import * as orderActions from '../../store/actions/orders';
+import Colors from '../Constants/Colors';
 
 const CustomizeOrder = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +19,19 @@ const CustomizeOrder = props => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const setOrderState = async () => {
+      const order = JSON.parse(await AsyncStorage.getItem('order'));
+      if (!order) return;
+      setWithOnion(order.onion);
+      setMayonnaise(order.mayonnaise);
+      setKetchup(order.ketchup);
+      setWet(order.wet);
+      setSpicy(order.spicy);
+    };
+    setOrderState();
+  }, []);
+
   const placeOrderHandler = async () => {
     setIsLoading(true);
     const order = {
@@ -24,7 +39,7 @@ const CustomizeOrder = props => {
       mayonnaise,
       ketchup,
       wet,
-      onion: withOnion
+      onion: withOnion,
     };
     try {
       await dispatch(orderActions.sendOrder(order));
@@ -60,8 +75,6 @@ const CustomizeOrder = props => {
       <SwitchLabel
         label="სველი"
         toggleSwitch={value => setWet(value)}
-
-
         state={wet}
       />
       <View style={styles.action}>
@@ -80,9 +93,9 @@ const styles = StyleSheet.create({
   action: {
     marginTop: 20,
   },
-  button : {
-    backgroundColor : '#FF5908'
-  }
+  button: {
+    backgroundColor: Colors.primary,
+  },
 });
 
 export default CustomizeOrder;

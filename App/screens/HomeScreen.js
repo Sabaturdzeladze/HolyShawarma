@@ -9,6 +9,7 @@ import CopyableText from '../components/UI/CopyableText';
 import CustomizeOrder from '../components/CustomizeOrder';
 import * as userActions from '../../store/actions/user';
 import ActionButton from '../components/UI/ActionButton';
+import Colors from '../Constants/Colors';
 
 const HomeScreen = props => {
   const [orderSuccessful, setOrderSuccessful] = useState(false);
@@ -68,7 +69,7 @@ HomeScreen.navigationOptions = navData => {
   return {
     headerTitle: 'დაამატე შეკვეთა',
     headerTitleContainerStyle: {
-      backgroundColor: '#FF5908',
+      backgroundColor: Colors.primary,
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',

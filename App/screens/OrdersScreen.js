@@ -6,6 +6,7 @@ import * as ordersActions from '../../store/actions/orders';
 import OrderItem from '../components/UI/OrderItem';
 import OrdersSummary from '../components/OrdersSummary';
 import Loading from '../components/UI/Loading';
+import Colors from '../Constants/Colors';
 
 const OrdersScreen = props => {
   const [loading, setLoading] = useState(false);
@@ -66,7 +67,7 @@ OrdersScreen.navigationOptions = navData => {
   return {
     headerTitle: 'შეკვეთები',
     headerTitleContainerStyle: {
-      backgroundColor: '#FF5908',
+      backgroundColor: Colors.primary,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 export default OrdersScreen;

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {TouchableOpacity, Text, StyleSheet, Clipboard} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {showMessage, hideMessage} from 'react-native-flash-message';
+import Colors from '../../Constants/Colors';
 
 const CopyableText = props => {
   const writeToClipboard = async () => {
@@ -25,7 +26,7 @@ const CopyableText = props => {
         {props.text}
         {props.account}
       </Text>
-      <Icon name="content-copy" size={20} color="#FF5908" />
+      <Icon name="content-copy" size={20} color={Colors.primary} />
     </TouchableOpacity>
   );
 };

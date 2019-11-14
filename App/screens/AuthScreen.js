@@ -11,6 +11,7 @@ import Card from '../components/UI/Card';
 import Input from '../components/UI/Input';
 import {login, signup} from '../../store/actions/user';
 import ActionButton from '../components/UI/ActionButton';
+import Colors from '../Constants/Colors';
 
 const AuthScreen = props => {
   const [authMethod, setAuthMethod] = useState('login');
@@ -90,7 +91,7 @@ const AuthScreen = props => {
                 : setAuthMethod('login');
             }}
             title={switchButtonTitle}
-            style={{...styles.actionBtn, backgroundColor: '#FF5908'}}
+            style={{...styles.actionBtn, backgroundColor: Colors.primary}}
           />
         </View>
       </Card>
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 25,
     fontSize: 20,
-    color: '#FF5908',
+    color: Colors.primary,
     alignSelf: 'center',
     fontWeight: 'bold',
   },

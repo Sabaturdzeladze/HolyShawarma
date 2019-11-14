@@ -7,6 +7,7 @@ import Card from './UI/Card';
 import SwitchLabel from './UI/SwitchLabel';
 import ActionButton from './UI/ActionButton';
 import * as orderActions from '../../store/actions/orders';
+import Colors from '../Constants/Colors';
 
 const CustomizeOrder = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: '#FF5908',
+    backgroundColor: Colors.primary,
   },
 });
 

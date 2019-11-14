@@ -1,13 +1,14 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
 import HomeScreen from '../screens/HomeScreen';
+import Colors from '../Constants/Colors';
 
 const HomeNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
       headerRightContainerStyle: {
-        backgroundColor: '#FF5908',
+        backgroundColor: Colors.primary,
         width: '15%',
         alignItems: 'center',
         justifyContent: 'flex-end',

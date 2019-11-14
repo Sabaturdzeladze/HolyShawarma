@@ -8,6 +8,7 @@ import Card from './Card';
 import SwitchLabel from './SwitchLabel';
 import * as ordersActions from '../../../store/actions/orders';
 import {generateOrderText} from '../../helpers/textGenerators';
+import Colors from '../../Constants/Colors';
 
 const OrderItem = ({item}) => {
   const [checked, setChecked] = useState(item.paymentSuccess);
@@ -48,7 +49,7 @@ const OrderItem = ({item}) => {
           <Icon
             size={28}
             name="delete"
-            color="#FF5908"
+            color={Colors.primary}
             onPress={removeOrderHandler}
           />
         </View>

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
+import {showMessage} from 'react-native-flash-message';
 
 import Card from './UI/Card';
 import SwitchLabel from './UI/SwitchLabel';
@@ -43,10 +44,20 @@ const CustomizeOrder = props => {
     };
     try {
       await dispatch(orderActions.sendOrder(order));
-      props.onSuccessChange();
       setIsLoading(false);
+      showMessage({
+        message: 'შეკვეთა წარმატებით გაიგზავნა',
+        position: {
+          left: 50,
+          right: 50,
+          bottom: 55
+        }
+      });
     } catch (error) {
       setIsLoading(false);
+      showMessage({
+        message: 'შეკვეთა ვერ გაიგზავნა'
+      });
     }
   };
 

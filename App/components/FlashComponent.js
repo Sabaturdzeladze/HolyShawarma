@@ -1,7 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
-
-const {width, height} = Dimensions.get('window');
+import {View, Text, StyleSheet} from 'react-native';
 
 const FlashComponent = ({ message }) => {
   return (

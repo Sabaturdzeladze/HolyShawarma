@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text ,KeyboardAvoidingView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {showMessage} from 'react-native-flash-message';
 
@@ -52,7 +52,7 @@ const AuthScreen = props => {
     }
   };
   return (
-    <View style={styles.wrapper}>
+    <KeyboardAvoidingView  style={styles.wrapper} behavior='padding'>
       <Card style={styles.card}>
         <Text style={styles.header}>{pageTitle}</Text>
         <Input
@@ -87,7 +87,7 @@ const AuthScreen = props => {
           />
         </View>
       </Card>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

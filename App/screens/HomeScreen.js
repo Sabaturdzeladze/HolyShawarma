@@ -1,11 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  Text,
-  KeyboardAvoidingView,
-} from 'react-native';
+import React, {useCallback, useEffect} from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import Input from '../components/UI/Input';
@@ -18,7 +12,6 @@ import ActionButton from '../components/UI/ActionButton';
 import Colors from '../Constants/Colors';
 
 const HomeScreen = props => {
-  const [orderSuccessful, setOrderSuccessful] = useState(false);
   const isAdmin = useSelector(props => props.user.user).isAdmin;
   const dispatch = useDispatch();
 
@@ -33,41 +26,20 @@ const HomeScreen = props => {
     navigation.setParams({logout: logoutHandler});
   }, [dispatch]);
 
-  const successChangeHandler = () => {
-    setOrderSuccessful(prevState => !prevState);
-  };
-
-  useEffect(() => {
-    if (orderSuccessful) {
-      setTimeout(() => {
-        setOrderSuccessful(false);
-      }, 2500);
-    }
-  }, [orderSuccessful]);
-
   return (
     <ScrollView style={styles.screen}>
-      <KeyboardAvoidingView behavior="padding">
-        <Card style={styles.accounts}>
-          <CopyableText text="TBC: " account="GE04TB7425645061600033" />
-          <CopyableText text="BOG: " account="GE04TB7425645061600033" />
+      <Card style={styles.accounts}>
+        <CopyableText text="TBC: " account="GE04TB7425645061600033" />
+        <CopyableText text="BOG: " account="GE04TB7425645061600033" />
+      </Card>
+      {isAdmin && (
+        <Card>
+          <Input label="TBC" />
+          <Input label="BOG" />
+          <ActionButton title="შეცვლა" style={styles.button} />
         </Card>
-        {isAdmin && (
-          <Card>
-            <Input label="TBC" />
-            <Input label="BOG" />
-            <ActionButton title="შეცვლა" style={styles.button} />
-          </Card>
-        )}
-
-        <CustomizeOrder onSuccessChange={successChangeHandler} />
-
-        {orderSuccessful && (
-          <View style={styles.success}>
-            <Icon name="check-circle" size={30} color="green" />
-          </View>
-        )}
-      </KeyboardAvoidingView>
+      )}
+      <CustomizeOrder />
     </ScrollView>
   );
 };
@@ -95,10 +67,6 @@ HomeScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-  },
-  success: {
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   button: {
     marginTop: 15,

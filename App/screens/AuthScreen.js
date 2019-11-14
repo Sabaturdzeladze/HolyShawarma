@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Alert
-} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {showMessage} from 'react-native-flash-message';
 
 import Card from '../components/UI/Card';
 import Input from '../components/UI/Input';
@@ -45,18 +41,14 @@ const AuthScreen = props => {
       props.navigation.navigate('Home');
     } catch (error) {
       setLoading(false);
-      Alert.alert(
-        'Error occured',
-        `${error}`,
-        [
-          {
-            text: 'OK',
-            onPress: () => {},
-            style: 'default',
-          },
-        ],
-        {cancelable: false},
-      );
+      showMessage({
+        message: `${error}`,
+        position: {
+          bottom: 10,
+          left: 50,
+          right: 50,
+        },
+      });
     }
   };
   return (

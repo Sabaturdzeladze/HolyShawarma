@@ -45,7 +45,7 @@ const BankAccounts = props => {
   const setAccountsHandler = async () => {
     try {
       setFormIsSubmitting(true);
-      const res = await fetch(`${env.localUsersUrl}/account/${user._id}`, {
+      const res = await fetch(`${env.usersUrl}/account/${user._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -47,8 +47,8 @@ const HomeScreen = props => {
       </Card>
       {isAdmin && (
         <Card>
-          <Input label="TBC"  />
-          <Input label="BOG" />
+          <Input label="TBC" style={styles.input} />
+          <Input label="BOG" style={styles.input} />
           <ActionButton title="შეცვლა"  style={styles.button}/>
         </Card>
       )}
@@ -94,6 +94,9 @@ const styles = StyleSheet.create({
   button :{
     marginTop: 15
   },
+  input: {
+    marginTop: 10
+  }
 });
 
 export default HomeScreen;

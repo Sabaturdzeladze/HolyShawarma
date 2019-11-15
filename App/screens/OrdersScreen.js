@@ -26,6 +26,7 @@ const OrdersScreen = props => {
   }, [dispatch, setIsRefreshing]);
 
   useEffect(() => {
+    if (orders.length) return;
     setLoading(true);
     fetchOrders()
       .then(() => setLoading(false))

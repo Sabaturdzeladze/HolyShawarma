@@ -34,11 +34,10 @@ HomeScreen.navigationOptions = navData => {
   const logout = navData.navigation.getParam('logout');
 
   return {
-    headerTitle: 'დაამატე შეკვეთა',
+    headerTitle: 'გადაირტყი შაურმა',
     headerTitleContainerStyle: {
       backgroundColor: Colors.primary,
-      alignItems: 'center',
-      justifyContent: 'center',
+
       width: '100%',
     },
     headerTitleStyle: {

@@ -1,27 +1,25 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text ,KeyboardAvoidingView} from 'react-native';
+import {View, StyleSheet, Text, KeyboardAvoidingView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {showMessage} from 'react-native-flash-message';
 
-import Card from '../components/UI/Card';
-import Input from '../components/UI/Input';
 import {login, signup} from '../../store/actions/user';
-import ActionButton from '../components/UI/ActionButton';
+import Card from './UI/Card';
+import Input from './UI/Input';
+import ActionButton from './UI/ActionButton';
 import Colors from '../Constants/Colors';
 
-const AuthScreen = props => {
-  const [authMethod, setAuthMethod] = useState('login');
+const Auth = props => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const authMethod = props.method;
 
   let pageTitle = 'Login Page';
-  let switchButtonTitle = 'Switch to Signup';
   let submitButtonTitle = 'Login';
 
   if (authMethod === 'signup') {
     pageTitle = 'Signup Page';
-    switchButtonTitle = 'Switch to Login';
     submitButtonTitle = 'Signup';
   }
 
@@ -52,7 +50,7 @@ const AuthScreen = props => {
     }
   };
   return (
-    <KeyboardAvoidingView  style={styles.wrapper} behavior='padding'>
+    <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
       <Card style={styles.card}>
         <Text style={styles.header}>{pageTitle}</Text>
         <Input
@@ -68,22 +66,11 @@ const AuthScreen = props => {
           secureTextEntry={true}
         />
         <View style={styles.actionsContainer}>
-          <View style={styles.buttonContainer}>
-            <ActionButton
-              loading={loading}
-              onPress={authHandler}
-              title={submitButtonTitle}
-              style={styles.actionBtn}
-            />
-          </View>
           <ActionButton
-            onPress={() => {
-              authMethod === 'login'
-                ? setAuthMethod('signup')
-                : setAuthMethod('login');
-            }}
-            title={switchButtonTitle}
-            style={{...styles.actionBtn, backgroundColor: Colors.primary}}
+            loading={loading}
+            onPress={authHandler}
+            title={submitButtonTitle}
+            style={styles.actionBtn}
           />
         </View>
       </Card>
@@ -112,10 +99,9 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 20,
   },
-  buttonContainer: {
-    width: '45%',
-    marginRight: 5,
-  },
+  actionBtn: {
+    backgroundColor: Colors.primary
+  }
 });
 
-export default AuthScreen;
+export default Auth;

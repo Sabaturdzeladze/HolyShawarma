@@ -1,15 +1,13 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
-import AuthScreen from '../screens/AuthScreen';
 import BottomNavigator from './BottomNavigator';
 import StartupScreen from '../screens/StartupScreen';
+import AuthNavigator from './AuthNavigation';
 
 const MainNavigator = createSwitchNavigator({
   Startup: StartupScreen,
-  Auth: AuthScreen,
-  Home: BottomNavigator
-}
-
-);
+  Auth: AuthNavigator,
+  Home: BottomNavigator,
+});
 
 export default createAppContainer(MainNavigator);

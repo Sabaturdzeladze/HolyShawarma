@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 import {useSelector} from 'react-redux';
+import Colors from '../Constants/Colors';
 
 import CopyableText from './UI/CopyableText';
 import Card from './UI/Card';
@@ -74,17 +75,9 @@ const BankAccounts = props => {
   };
 
   return (
-    <View>
-      <Card style={styles.screen}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            <CopyableText text="TBC: " account={tbc} />
-            <CopyableText text="BOG: " account={bog} />
-          </>
-        )}
-      </Card>
+    <>
+      {props.children}
+
       {user.isAdmin && (
         <Card>
           <Input
@@ -98,18 +91,27 @@ const BankAccounts = props => {
             label="BOG"
             value={bogInput}
             onChangeText={value => setBogInput(value)}
-            style={styles.spaceOnTop}
             labelStyle={styles.spaceOnTop}
           />
           <ActionButton
             loading={formIsSubmitting}
             title="შეცვლა"
-            style={styles.spaceOnTop}
+            style={styles.color}
             onPress={setAccountsHandler}
           />
         </Card>
       )}
-    </View>
+      <Card style={styles.screen}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <CopyableText text="TBC: " account={tbc} />
+            <CopyableText text="BOG: " account={bog} />
+          </>
+        )}
+      </Card>
+    </>
   );
 };
 
@@ -118,7 +120,11 @@ const styles = StyleSheet.create({
     minHeight: 100,
   },
   spaceOnTop: {
-    marginTop: 6
+    marginTop: 6,
+  },
+  color: {
+    marginTop: 6,
+    backgroundColor: Colors.primary
   }
 });
 

@@ -24,8 +24,9 @@ const HomeScreen = props => {
 
   return (
     <ScrollView style={styles.screen}>
-      <BankAccounts />
-      <CustomizeOrder />
+      <BankAccounts>
+        <CustomizeOrder />
+      </BankAccounts>
     </ScrollView>
   );
 };
@@ -41,7 +42,7 @@ HomeScreen.navigationOptions = navData => {
       width: '100%',
     },
     headerTitleStyle: {
-      fontSize: 15,
+      fontSize: 18,
       color: '#fff',
       fontWeight: 'bold',
     },

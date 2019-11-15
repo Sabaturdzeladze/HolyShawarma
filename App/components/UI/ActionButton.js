@@ -22,12 +22,12 @@ const ActionButton = ({style, loading, title, ...props}) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    width: '100%',
+    width: 200,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 35,
+    height: 45,
     backgroundColor: '#2398EF',
-    borderRadius: 2,
+    borderRadius: 20,
     alignSelf: 'center'
   },
   title: {

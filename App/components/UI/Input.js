@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
 
-const Input = props => {
+const Input = ({style, labelStyle, ...props}) => {
   return (
     <View style={{...styles.wrapper, ...props.style}}>
-      {props.label && <Text style={styles.label}>{props.label}</Text>}
+      {props.label && <Text style={labelStyle}>{props.label}</Text>}
       <TextInput
         value={props.value}
         onChangeText={props.onChangeText}
+        style={{...styles.input, ...style}}
         {...props}
-        style={styles.input}
       />
     </View>
   );

@@ -91,16 +91,20 @@ const BankAccounts = props => {
             label="TBC"
             value={tbcInput}
             onChangeText={value => setTbcInput(value)}
+            style={styles.spaceOnTop}
+            labelStyle={styles.spaceOnTop}
           />
           <Input
             label="BOG"
             value={bogInput}
             onChangeText={value => setBogInput(value)}
+            style={styles.spaceOnTop}
+            labelStyle={styles.spaceOnTop}
           />
           <ActionButton
             loading={formIsSubmitting}
             title="შეცვლა"
-            style={styles.button}
+            style={styles.spaceOnTop}
             onPress={setAccountsHandler}
           />
         </Card>
@@ -113,6 +117,9 @@ const styles = StyleSheet.create({
   screen: {
     minHeight: 100,
   },
+  spaceOnTop: {
+    marginTop: 6
+  }
 });
 
 export default BankAccounts;

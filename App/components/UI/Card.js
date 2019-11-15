@@ -2,7 +2,6 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
 const Card = props => {
-  console.log('chinuri' , props)
   return <View style={styles.wrapper}><View style={{...styles.card, ...props.style}}>{props.children}</View></View>;
 };
 

@@ -19,7 +19,7 @@ const OrdersSummary = ({orders}) => {
   const comment = generateComment(orders);
 
   return (
-    <View style={{alignItems: 'center'}}>
+    <View style={styles.screen}>
       <Card style={styles.comment}>
         <Text>
           რაოდენობა: <Text style={styles.text}>{length}</Text>
@@ -42,8 +42,12 @@ const OrdersSummary = ({orders}) => {
 };
 
 const styles = StyleSheet.create({
+  screen: {
+    alignItems: 'center'
+  },
   comment: {
     alignItems: 'center',
+    paddingVertical: 20
   },
   text: {fontWeight: 'bold', fontSize: 15},
 });

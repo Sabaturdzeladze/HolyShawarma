@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import * as ordersActions from '../../store/actions/orders';
 import OrderItem from '../components/UI/OrderItem';
-import OrdersSummary from '../components/OrdersSummary';
 import Loading from '../components/UI/Loading';
 import Colors from '../Constants/Colors';
 
@@ -50,8 +49,6 @@ const OrdersScreen = props => {
   }
 
   return (
-    <>
-      <OrdersSummary orders={orders} />
       <FlatList
         data={orders}
         keyExtractor={item => item._id}
@@ -59,7 +56,6 @@ const OrdersScreen = props => {
         refreshing={isRefreshing}
         onRefresh={fetchOrders}
       />
-    </>
   );
 };
 

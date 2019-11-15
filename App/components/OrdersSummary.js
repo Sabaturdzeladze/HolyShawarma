@@ -43,7 +43,7 @@ const OrdersSummary = ({orders}) => {
 
 const styles = StyleSheet.create({
   screen: {
-    alignItems: 'center'
+    alignItems: 'center' ,
   },
   comment: {
     alignItems: 'center',

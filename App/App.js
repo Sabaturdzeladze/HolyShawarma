@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
+import {StyleSheet, StatusBar, Platform} from 'react-native';
 import {Provider} from 'react-redux';
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
@@ -21,7 +21,7 @@ const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar backgroundColor={Colors.primary} barStyle='light-content' />
+      <StatusBar backgroundColor={Platform.OS === 'android' ? Colors.statusBar : Colors.primary} barStyle='light-content' />
       <MainNavigation />
       <FlashMessage
         position={{bottom: 55, left: 100, right: 100}}

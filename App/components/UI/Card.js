@@ -2,11 +2,16 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
 const Card = props => {
-  return <View style={{...styles.card, ...props.style}}>{props.children}</View>;
+  console.log('chinuri' , props)
+  return <View style={styles.wrapper}><View style={{...styles.card, ...props.style}}>{props.children}</View></View>;
 };
 
 const styles = StyleSheet.create({
+  wrapper : {
+    alignItems:'center'
+  },
   card: {
+    width: '92%',
     shadowColor: 'black',
     shadowOpacity: 0.26,
     shadowOffset: {width: 0, height: 2},

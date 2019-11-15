@@ -1,3 +1,5 @@
 export default {
-  primary: '#FF5908'
+  primary: '#F45953',
+  statusBar: '#c44843',
+  textPrimary: '#707070',
 }

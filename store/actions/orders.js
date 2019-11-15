@@ -11,7 +11,9 @@ export const fetchOrders = () => {
   return async dispatch => {
     try {
       const res = await fetch(env.ordersUrl);
+      if (res.status >= 400) throw new Error('Something went wrong');
       const data = await res.json();
+      
       dispatch({
         type: FETCH_ORDERS,
         orders: data.orders,

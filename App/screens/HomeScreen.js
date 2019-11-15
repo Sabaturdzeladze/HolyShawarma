@@ -10,7 +10,6 @@ import BankAccounts from '../components/BankAccounts';
 
 const HomeScreen = props => {
   const dispatch = useDispatch();
-
   const {navigation} = props;
 
   const logoutHandler = useCallback(async () => {
@@ -38,7 +37,6 @@ HomeScreen.navigationOptions = navData => {
     headerTitle: 'გადაირტყი შაურმა',
     headerTitleContainerStyle: {
       backgroundColor: Colors.primary,
-
       width: '100%',
     },
     headerTitleStyle: {

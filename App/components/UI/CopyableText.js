@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    opacity: 1,
+    color: Colors.textPrimary,
     fontWeight: 'bold',
   },
 });

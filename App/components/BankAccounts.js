@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 import {useSelector} from 'react-redux';
+import Colors from '../Constants/Colors';
 
 import CopyableText from './UI/CopyableText';
 import Card from './UI/Card';
@@ -74,17 +75,9 @@ const BankAccounts = props => {
   };
 
   return (
-    <View>
-      <Card style={styles.screen}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            <CopyableText text="TBC: " account={tbc} />
-            <CopyableText text="BOG: " account={bog} />
-          </>
-        )}
-      </Card>
+    <>
+      {props.children}
+
       {user.isAdmin && (
         <Card>
           <Input
@@ -100,12 +93,22 @@ const BankAccounts = props => {
           <ActionButton
             loading={formIsSubmitting}
             title="შეცვლა"
-            style={styles.button}
+            style={styles.color}
             onPress={setAccountsHandler}
           />
         </Card>
       )}
-    </View>
+      <Card style={styles.screen}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <CopyableText text="TBC: " account={tbc} />
+            <CopyableText text="BOG: " account={bog} />
+          </>
+        )}
+      </Card>
+    </>
   );
 };
 
@@ -113,6 +116,9 @@ const styles = StyleSheet.create({
   screen: {
     minHeight: 100,
   },
+  color: {
+    backgroundColor: Colors.primary
+  }
 });
 
 export default BankAccounts;

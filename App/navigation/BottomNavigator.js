@@ -41,7 +41,7 @@ const BottomNavigator = createBottomTabNavigator({
     navigationOptions: ({navigation}) => {
       return {
         tabBarIcon: ({ tintColor }) => {
-          return <Icon name="search" size={20} color={tintColor} />
+          return <Icon name="info-circle" size={20} color={tintColor} />
         },
         tabBarOptions : {
           activeTintColor: Colors.primary,

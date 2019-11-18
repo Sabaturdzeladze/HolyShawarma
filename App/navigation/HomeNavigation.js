@@ -9,7 +9,7 @@ const HomeNavigator = createStackNavigator({
     navigationOptions: {
       headerRightContainerStyle: {
         backgroundColor: Colors.primary,
-        width: '15%',
+        // width: '15%',
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingRight: 10,

@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';

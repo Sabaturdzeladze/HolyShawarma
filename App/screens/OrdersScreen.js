@@ -5,14 +5,25 @@ import {useDispatch, useSelector} from 'react-redux';
 import * as ordersActions from '../../store/actions/orders';
 import OrderItem from '../components/UI/OrderItem';
 import Loading from '../components/UI/Loading';
-import Colors from '../Constants/Colors';
+import OrdersSummary from '../components/OrdersSummary';
+import CustomModal from '../components/UI/CustomModal';
 
 const OrdersScreen = props => {
   const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const orders = useSelector(state => state.orders.orders);
 
   const dispatch = useDispatch();
+  const {navigation} = props;
+
+  const showSummaryHandler = useCallback(() => setModalIsOpen(true), [
+    setModalIsOpen,
+  ]);
+
+  useEffect(() => {
+    navigation.setParams({showSummary: showSummaryHandler});
+  }, []);
 
   const fetchOrders = useCallback(async () => {
     setIsRefreshing(true);
@@ -50,6 +61,14 @@ const OrdersScreen = props => {
   }
 
   return (
+    <>
+      <CustomModal
+        animationType="slide"
+        transparent={true}
+        visible={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}>
+        <OrdersSummary orders={orders} />
+      </CustomModal>
       <FlatList
         data={orders}
         keyExtractor={item => item._id}
@@ -57,22 +76,13 @@ const OrdersScreen = props => {
         refreshing={isRefreshing}
         onRefresh={fetchOrders}
       />
+    </>
   );
 };
 
 OrdersScreen.navigationOptions = navData => {
   return {
     headerTitle: 'შეკვეთები',
-    headerTitleContainerStyle: {
-      backgroundColor: Colors.primary,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    headerTitleStyle: {
-      fontSize: 15,
-      color: '#fff',
-      fontWeight: 'bold',
-    },
   };
 };
 

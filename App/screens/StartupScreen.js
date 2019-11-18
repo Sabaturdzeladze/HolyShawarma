@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {useDispatch} from 'react-redux';
 
 import * as userActions from '../../store/actions/user';
-import Loading from '../components/UI/Loading';
-import Colors from '../Constants/Colors';
 
 const StartupScreen = props => {
   const dispatch = useDispatch();
@@ -27,7 +25,10 @@ const StartupScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <Loading color={Colors.primary} size="large" />
+      <Image
+        source={require('../assets/images/loading_logo.png')}
+        style={styles.image}
+      />
     </View>
   );
 };
@@ -37,6 +38,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F7584E',
+  },
+  image: {
+    width: 277,
+    height: 226,
+    resizeMode: 'stretch',
   },
 });
 

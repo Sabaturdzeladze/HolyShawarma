@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
@@ -44,7 +44,7 @@ const OrderItem = ({item}) => {
             <SwitchLabel
               label={`User: ${item.user.userName}`}
               state={checked}
-              toggleSwitch={value => paymentChangeHandler(value)}
+              toggleSwitch={paymentChangeHandler}
             />
           )}
         </View>
@@ -69,7 +69,8 @@ const OrderItem = ({item}) => {
 const styles = StyleSheet.create({
   card : {
     flexDirection:'row',
-    justifyContent :'space-between'
+    justifyContent :'space-between',
+    marginVertical: 6
   },
   userPlace: {
     padding: 5,

@@ -32,50 +32,55 @@ const OrderItem = ({item}) => {
 
   return (
     <Card style={styles.card}>
-      <View>
-        <View style={styles.header}>
-          {!user.isAdmin ? (
-            <View style={styles.userPlace}>
-              <Text style={styles.user}>
-                User : <Text style={styles.userName}>{item.user.userName}</Text>
-              </Text>
-            </View>
-          ) : (
-            <SwitchLabel
-              label={`User: ${item.user.userName}`}
-              state={checked}
-              toggleSwitch={value => paymentChangeHandler(value)}
-            />
-          )}
-        </View>
-        <View style={styles.textPlace}>
-          <Text style={styles.text}>{txt}</Text>
-        </View>
-      </View>
-      {user._id === item.user._id && (
-        <View style={styles.removeWrapper}>
-          <Icon
-            size={28}
-            name="delete"
-            color={Colors.primary}
-            onPress={removeOrderHandler}
+      <View style={styles.header}>
+        {!user.isAdmin ? (
+          <View style={styles.userPlace}>
+            <Text style={styles.user}>
+             <Text style={styles.userName}>{item.user.userName}</Text>
+            </Text>
+          </View>
+        ) : (
+          <SwitchLabel
+            label={`User: ${item.user.userName}`}
+            state={checked}
+            toggleSwitch={value => paymentChangeHandler(value)}
           />
-        </View>
-      )}
+        )}
+        {user._id === item.user._id && (
+          <View style={styles.removeWrapper}>
+            <Icon
+              size={28}
+              name="delete"
+              color={Colors.primary}
+              onPress={removeOrderHandler}
+            />
+          </View>
+        )}
+      </View>
+      <View style={styles.textPlace}>
+        <Text style={styles.text}>{txt}</Text>
+      </View>
     </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  card : {
-    flexDirection:'row',
-    justifyContent :'space-between'
+  card: {
+    padding: 0
+  },
+  header: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: 'rgba(228 , 118, 118 , 0.4)',
+    borderBottomWidth: 1,
+    padding: 5
   },
   userPlace: {
     padding: 5,
   },
   removeWrapper: {
-    paddingTop: 10,
+
     alignItems: 'center',
     paddingRight: 10,
   },
@@ -88,13 +93,19 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   userName: {
-    color: '#FF5908',
-    fontSize: 16,
+    color: '#F7584E',
+    fontSize: 20,
     fontWeight: 'bold',
   },
   text: {
     alignItems: 'center',
+    color:'#707070'
   },
+  textPlace: {
+    paddingTop: 10,
+    paddingBottom: 15 ,
+    paddingLeft: 10
+  }
 });
 
 export default OrderItem;

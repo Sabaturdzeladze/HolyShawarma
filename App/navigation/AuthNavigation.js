@@ -13,7 +13,7 @@ const AuthNavigator = createBottomTabNavigator({
     navigationOptions: ({navigation}) => {
       return {
         tabBarIcon: ({tintColor, focused}) => {
-          return <Icon name="login" size={20} color={focused ? tintColor : '#ccc'} />;
+          return <Icon name="login" size={20} color={focused ? '#fff' :  '#404142'} />;
         },
         tabBarLabel: 'შესვლა',
       };
@@ -24,7 +24,7 @@ const AuthNavigator = createBottomTabNavigator({
     navigationOptions: ({navigation}) => {
       return {
         tabBarIcon: ({tintColor, focused}) => {
-          return <SignupIcon name="md-person-add" size={20} color={focused ? tintColor : '#ccc'} />;
+          return <SignupIcon name="md-person-add" size={20} color={focused ?  '#fff' :  '#404142'} />;
         },
         tabBarLabel: 'რეგისტრაცია',
       };
@@ -33,6 +33,7 @@ const AuthNavigator = createBottomTabNavigator({
 }, {
   tabBarOptions: {
     activeTintColor: '#fff',
+    inactiveTintColor: '#404142',
     activeBackgroundColor: Colors.primary,
     inactiveBackgroundColor: Colors.primary,
   }

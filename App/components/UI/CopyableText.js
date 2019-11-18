@@ -22,10 +22,14 @@ const CopyableText = props => {
       style={styles.container}
       onPress={writeToClipboard}
       activeOpacity={0.7}>
-      <Text style={styles.text}>
-        {props.text}
-        {props.account}
-      </Text>
+      {props.children ? (
+        props.children
+      ) : (
+        <Text style={styles.text}>
+          {props.text}
+          {props.account}
+        </Text>
+      )}
       <Icon name="content-copy" size={20} color={Colors.primary} />
     </TouchableOpacity>
   );
@@ -34,11 +38,11 @@ const CopyableText = props => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    padding: 10,
     alignItems: 'center',
-    marginTop: 10
+    justifyContent: 'space-between',
   },
   text: {
-    flex: 1,
     opacity: 1,
     color: Colors.textPrimary,
     fontWeight: 'bold',

@@ -1,3 +1,6 @@
+import React from 'react';
+import {Text} from 'react-native';
+
 export const generateOrderText = order => {
   let txt = '';
   txt += !order.ketchup ? 'კეტჩუპის გარეშე, ' : '';
@@ -8,7 +11,7 @@ export const generateOrderText = order => {
   return txt;
 };
 
-export const generateComment = (orders) => {
+export const generateComment = orders => {
   const ordersDetails = {};
   orders.forEach(order => {
     const text = generateOrderText(order);
@@ -16,15 +19,18 @@ export const generateComment = (orders) => {
       ordersDetails[text].quantity++;
     } else {
       ordersDetails[text] = {
-        quantity: 1
-      }
+        quantity: 1,
+      };
     }
-  })
+  });
 
   let orderTxt = '';
   for (const text in ordersDetails) {
     const element = ordersDetails[text];
     orderTxt += `${element.quantity} - ${text} `;
   }
-  return orderTxt.slice(0, orderTxt.length - 1);
+  return {
+    ordersDetails,
+    fullText: orderTxt.slice(0, orderTxt.length - 1)
+  };
 }

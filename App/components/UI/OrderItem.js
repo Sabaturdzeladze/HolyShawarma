@@ -3,22 +3,35 @@ import {View, Text, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
+import {showMessage} from 'react-native-flash-message';
 
 import Card from './Card';
 import SwitchLabel from './SwitchLabel';
 import * as ordersActions from '../../../store/actions/orders';
 import {generateOrderText} from '../../helpers/textGenerators';
 import Colors from '../../Constants/Colors';
+import Loading from './Loading';
 
 const OrderItem = ({item}) => {
   const [checked, setChecked] = useState(item.paymentSuccess);
+  const [deleting, setDeleting] = useState(false);
   const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
 
   const txt = generateOrderText(item);
 
   const removeOrderHandler = useCallback(() => {
-    dispatch(ordersActions.removeOrder(item._id));
+    const removeItem = async () => {
+      try {
+        setDeleting(true);
+        await dispatch(ordersActions.removeOrder(item._id));
+        showMessage({ message: 'შეკვეთა წაიშალა.' })
+      } catch (error) {
+        setDeleting(false);
+        showMessage({ message: 'შეკვეთა ვერ წაიშალა.' })
+      }
+    };
+    removeItem();
   }, [dispatch, item]);
 
   const paymentChangeHandler = async state => {
@@ -36,7 +49,7 @@ const OrderItem = ({item}) => {
         {!user.isAdmin ? (
           <View style={styles.userPlace}>
             <Text style={styles.user}>
-             <Text style={styles.userName}>{item.user.userName}</Text>
+              <Text style={styles.userName}>{item.user.userName}</Text>
             </Text>
           </View>
         ) : (
@@ -48,12 +61,16 @@ const OrderItem = ({item}) => {
         )}
         {user._id === item.user._id && (
           <View style={styles.removeWrapper}>
-            <Icon
-              size={28}
-              name="delete"
-              color={Colors.primary}
-              onPress={removeOrderHandler}
-            />
+            {deleting ? (
+              <Loading color={Colors.primary} />
+            ) : (
+              <Icon
+                size={28}
+                name="delete"
+                color={Colors.primary}
+                onPress={removeOrderHandler}
+              />
+            )}
           </View>
         )}
       </View>
@@ -66,7 +83,7 @@ const OrderItem = ({item}) => {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 0
+    padding: 0,
   },
   header: {
     justifyContent: 'space-between',
@@ -74,13 +91,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: 'rgba(228 , 118, 118 , 0.4)',
     borderBottomWidth: 1,
-    padding: 5
+    padding: 5,
   },
   userPlace: {
     padding: 5,
   },
   removeWrapper: {
-
     alignItems: 'center',
     paddingRight: 10,
   },
@@ -99,13 +115,13 @@ const styles = StyleSheet.create({
   },
   text: {
     alignItems: 'center',
-    color:'#707070'
+    color: '#707070',
   },
   textPlace: {
     paddingTop: 10,
-    paddingBottom: 15 ,
-    paddingLeft: 10
-  }
+    paddingBottom: 15,
+    paddingLeft: 10,
+  },
 });
 
 export default OrderItem;

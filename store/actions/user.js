@@ -58,7 +58,6 @@ export const signup = user => {
 };
 
 export const logout = () => {
-  AsyncStorage.removeItem('username');
   AsyncStorage.removeItem('password');
   return {type: USER_LOGOUT};
 };

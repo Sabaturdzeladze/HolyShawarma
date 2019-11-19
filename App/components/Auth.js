@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text, KeyboardAvoidingView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {showMessage} from 'react-native-flash-message';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import {login, signup} from '../../store/actions/user';
 import Card from './UI/Card';
@@ -14,6 +15,18 @@ const Auth = props => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const authMethod = props.method;
+
+  useEffect(() => {
+    if (authMethod === 'login') {
+      const setLoginUsername = async () => {
+        const username = await AsyncStorage.getItem('username');
+        if (username) {
+          setUserName(username);
+        }
+      }
+      setLoginUsername();
+    }
+  }, [])
 
   let pageTitle = 'Login Page';
   let submitButtonTitle = 'Login';

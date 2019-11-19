@@ -6,8 +6,8 @@ import AuthNavigator from './AuthNavigation';
 
 const MainNavigator = createSwitchNavigator({
   Startup: StartupScreen,
-  // Auth: AuthNavigator,
-  // Home: BottomNavigator,
+  Auth: AuthNavigator,
+  Home: BottomNavigator,
 });
 
 export default createAppContainer(MainNavigator);

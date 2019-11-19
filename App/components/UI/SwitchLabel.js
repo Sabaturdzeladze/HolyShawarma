@@ -10,9 +10,8 @@ const IngredientSwitch = props => {
         {props.label}
       </Text>
       <Switch
-        trackColor={{true : Colors.primary , false : '#ccc'}}
-        thumbColor="#ccc"
-        thumbColor={Colors.primary}
+        trackColor={{true : Colors.switchTrackActive , false : Colors.switchTrackInactive}}
+        thumbColor={props.state ? Colors.primary : Colors.thumbInactive}
         value={props.state}
         onValueChange={props.toggleSwitch}
       />

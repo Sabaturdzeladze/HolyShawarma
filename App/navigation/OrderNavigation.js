@@ -20,7 +20,7 @@ const OrderNavigator = createStackNavigator({
         paddingRight: 10,
       },
       headerTitleStyle: {
-        fontSize: 15,
+        fontSize: 16,
         color: '#fff',
         fontWeight: 'bold',
       },

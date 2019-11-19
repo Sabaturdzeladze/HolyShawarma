@@ -40,7 +40,7 @@ HomeScreen.navigationOptions = navData => {
       width: '100%',
     },
     headerTitleStyle: {
-      fontSize: 18,
+      fontSize: 16,
       color: '#fff',
       fontWeight: 'bold',
     },

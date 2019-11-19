@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 import env from '../../env';
+import { http } from '../../App/helpers/requestHelper';
 
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_SIGNUP = 'USER_SIGNUP';
@@ -16,8 +17,7 @@ export const login = user => {
           'Content-Type': 'application/json',
         },
       });
-
-      const data = await res.json();
+      const data = await http(env.usersUrl + '/login', { user }, 'POST');
 
       if (res.status >= 400) {
         throw new Error(data.error);

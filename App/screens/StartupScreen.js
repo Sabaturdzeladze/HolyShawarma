@@ -9,11 +9,10 @@ import wing_right from '../assets/images/wing_right.png';
 import shawarma from '../assets/images/shawarma.png';
 import ring from '../assets/images/ring.png';
 
-const StartupScreen = (props) => {
+const StartupScreen = props => {
   const dispatch = useDispatch();
   const [rotateAnimation, setRotateAnimation] = useState(new Animated.Value(0));
-  const [zoomHeight, setZoomHeight] = useState(new Animated.Value(0));
-  const [zoomWidth, setZoomWidth] = useState(new Animated.Value(0));
+  const [zoomRing, setZoomRing] = useState(new Animated.Value(0));
 
   useEffect(() => {
     Animated.loop(
@@ -24,22 +23,15 @@ const StartupScreen = (props) => {
       }),
     ).start();
 
-    // Animated.loop(
-    //   Animated.timing(zoomHeight, {
-    //     toValue: 17,
-    //     duration: 1200,
-    //     useNativeDriver: true,
-    //   }),
-    // ).start();
+    Animated.loop(
+      Animated.timing(zoomRing, {
+        toValue: 1,
+        duration: 1100,
+        useNativeDriver: true,
+      }),
+    ).start();
+  }, []);
 
-    // Animated.loop(
-    //   Animated.timing(zoomWidth, {
-    //     toValue: 17,
-    //     duration: 1200,
-    //     useNativeDriver: true,
-    //   }),
-    // ).start();
-  });
   const spin = rotateAnimation.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: ['30deg', '-10deg', '30deg'],
@@ -48,6 +40,20 @@ const StartupScreen = (props) => {
     inputRange: [0, 0.5, 1],
     outputRange: ['-30deg', '10deg', '-30deg'],
   });
+  const transform = [
+    {
+      scaleX: zoomRing.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [1, 1.25, 1],
+      }),
+    },
+    {
+      scaleY: zoomRing.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [1, 1.25, 1],
+      }),
+    },
+  ];
 
   useEffect(() => {
     const autoAuth = async () => {
@@ -65,10 +71,7 @@ const StartupScreen = (props) => {
   }, [dispatch]);
   return (
     <View style={styles.screen}>
-      <Animated.Image
-        source={ring}
-        style={styles.ring}
-      />
+      <Animated.Image source={ring} style={{...styles.ring, transform}} />
       <View style={styles.container}>
         <Animated.Image
           source={wing_left}
@@ -109,7 +112,7 @@ const styles = StyleSheet.create({
     transform: [{rotate: '45deg'}],
   },
   ring: {
-    marginLeft: 10,
+    marginLeft: 7,
     marginBottom: 15,
     resizeMode: 'stretch',
     width: 71,

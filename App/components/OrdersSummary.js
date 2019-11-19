@@ -6,6 +6,7 @@ import Card from '../components/UI/Card';
 import CopyableText from './UI/CopyableText';
 import {generateComment} from '../helpers/textGenerators';
 import Colors from '../Constants/Colors';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const OrdersDescription = ({ordersDetails}) => {
   return (
@@ -18,7 +19,7 @@ const OrdersDescription = ({ordersDetails}) => {
   );
 };
 
-const OrdersSummary = ({orders}) => {
+const OrdersSummary = ({orders},...props) => {
   const user = useSelector(state => state.user.user);
   const ordersState = useSelector(state => state.orders.orders);
 
@@ -33,13 +34,21 @@ const OrdersSummary = ({orders}) => {
   return (
     <View style={styles.screen}>
       <Card style={styles.comment}>
+        <Icon 
+        onPress={props.request}
+          style={styles.orderIcon}
+          name="close"
+          size={24}
+          color={Colors.primary}
+        />
         <View style={styles.modalbox}>
           <Text style={styles.orderQuantity}>
             რაოდენობა: <Text style={styles.text}>{length}</Text>
           </Text>
+
           {user.isAdmin && (
             <Text>
-              წარმატებული გადახდები: <Text style={styles.text}>{count}</Text>
+              წარმატებული გადახდები <Text style={styles.text}>{count}</Text>
             </Text>
           )}
           <Text style={styles.textPrice}>
@@ -77,14 +86,20 @@ const styles = StyleSheet.create({
   },
   description: {
     paddingLeft: 5,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   comment: {padding: 0},
-  text: {fontWeight: 'bold', fontSize: 15},
+  text: {fontWeight: 'bold', fontSize: 15, color: Colors.textPrimary},
   textPrice: {
     fontSize: 15,
     marginTop: 10,
     paddingBottom: 10,
+  },
+  orderIcon: {
+    position: 'absolute',
+    right: 0,
+    marginRight: 10,
+    top: 10,
   },
 });
 

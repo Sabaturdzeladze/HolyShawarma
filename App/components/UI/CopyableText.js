@@ -26,7 +26,7 @@ const CopyableText = props => {
         props.children
       ) : (
         <Text style={styles.text}>
-          {props.text}
+          {props.text} 
           {props.account}
         </Text>
       )}
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    opacity: 1,
     color: Colors.textPrimary,
     fontWeight: 'bold',
   },

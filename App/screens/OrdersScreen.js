@@ -67,7 +67,7 @@ const OrdersScreen = props => {
         transparent={true}
         visible={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}>
-        <OrdersSummary orders={orders} />
+        <OrdersSummary orders={orders} request={()=>setModalIsOpen(false)} />
       </CustomModal>
       <FlatList
         data={orders}

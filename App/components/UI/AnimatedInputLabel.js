@@ -25,7 +25,7 @@ const AnimatedInputLabel = ({
   useEffect(() => {
     if (!value) return;
     labelToTop.start();
-  }, [value])
+  }, []);
   
   let transform = [
     {

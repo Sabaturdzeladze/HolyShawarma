@@ -43,6 +43,6 @@ export const signup = user => {
 };
 
 export const logout = () => {
-  AsyncStorage.removeItem('password');
+  AsyncStorage.removeItem('token');
   return {type: USER_LOGOUT};
 };

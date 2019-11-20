@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {login, signup} from '../../store/actions/user';
 import Card from './UI/Card';
 import Input from './UI/Input';
+import AnimatedInputLabel from './UI/AnimatedInputLabel';
 import ActionButton from './UI/ActionButton';
 import Colors from '../Constants/Colors';
 
@@ -23,10 +24,10 @@ const Auth = props => {
         if (username) {
           setUserName(username);
         }
-      }
+      };
       setLoginUsername();
     }
-  }, [])
+  }, []);
 
   let pageTitle = 'Login Page';
   let submitButtonTitle = 'Login';
@@ -66,15 +67,14 @@ const Auth = props => {
     <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
       <Card style={styles.card}>
         <Text style={styles.header}>{pageTitle}</Text>
-        <Input
+        <AnimatedInputLabel
+          label="გადამრტყმელი"
           value={userName}
-          style={styles.input}
-          label="Username"
           onChangeText={value => changeTextHanlder(value)}
         />
-        <Input
+        <AnimatedInputLabel
+          label="პაროლი"
           value={password}
-          label="Password"
           onChangeText={value => changeTextHanlder(value, 'password')}
           secureTextEntry={true}
         />
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   actionBtn: {
-    backgroundColor: Colors.primary
-  }
+    backgroundColor: Colors.primary,
+  },
 });
 
 export default Auth;

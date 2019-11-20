@@ -8,7 +8,7 @@ import {login, signup} from '../../store/actions/user';
 import Card from './UI/Card';
 import Input from './UI/Input';
 import AnimatedInputLabel from './UI/AnimatedInputLabel';
-import ActionButton from './UI/ActionButton';
+import LoginButton from './UI/ActionButton';
 import Colors from '../Constants/Colors';
 
 const Auth = props => {
@@ -79,7 +79,7 @@ const Auth = props => {
           secureTextEntry={true}
         />
         <View style={styles.actionsContainer}>
-          <ActionButton
+          <LoginButton
             loading={loading}
             onPress={authHandler}
             title={submitButtonTitle}
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   actionsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginTop: 20,
   },
   input: {
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   },
   actionBtn: {
     backgroundColor: Colors.primary,
+
   },
 });
 

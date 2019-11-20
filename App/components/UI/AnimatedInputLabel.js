@@ -69,6 +69,9 @@ const AnimatedInputLabel = ({label, value, onChangeText, style, ...props}) => {
 };
 
 const styles = StyleSheet.create({
+  container : {
+    marginTop: 15
+  },
   label: {
     position: 'absolute',
     top: 10,

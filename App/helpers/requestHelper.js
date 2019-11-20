@@ -1,16 +1,16 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-const errorHandler = async (res) => {
+const errorHandler = async res => {
   try {
     if (res.status === 401) {
       AsyncStorage.removeItem('token');
       throw new Error('Unauthorized');
-    } 
+    }
     const data = await res.json();
     if (res.status >= 400) {
       throw new Error(data.error);
     }
-    return data;
+    return {data, res};
   } catch (error) {
     throw error.message;
   }
@@ -37,8 +37,8 @@ const post = async (url, body) => {
     const res = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(body),
-      'Content-Type': 'application/json',
       headers: {
+        'Content-Type': 'application/json',
         authorization: token,
       },
     });
@@ -55,8 +55,8 @@ const put = async (url, body) => {
     const res = await fetch(url, {
       method: 'PUT',
       body: JSON.stringify(body),
-      'Content-Type': 'application/json',
       headers: {
+        'Content-Type': 'application/json',
         authorization: token,
       },
     });
@@ -73,8 +73,8 @@ const del = async (url, body) => {
     const res = await fetch(url, {
       method: 'DELETE',
       body: JSON.stringify(body),
-      'Content-Type': 'application/json',
       headers: {
+        'Content-Type': 'application/json',
         authorization: token,
       },
     });

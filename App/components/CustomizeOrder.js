@@ -75,12 +75,18 @@ const CustomizeOrder = props => {
       />
       <SwitchLabel
         label="მაიონეზით"
-        toggleSwitch={value => setMayonnaise(value)}
+        toggleSwitch={value => {
+          setMayonnaise(value);
+          if (!value && !ketchup) setWet(false);
+        }}
         state={mayonnaise}
       />
       <SwitchLabel
         label="კეტჩუპით"
-        toggleSwitch={value => setKetchup(value)}
+        toggleSwitch={value => {
+          setKetchup(value);
+          if (!value && !mayonnaise) setWet(false);
+        }}
         state={ketchup}
       />
       <SwitchLabel

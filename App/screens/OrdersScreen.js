@@ -51,7 +51,7 @@ const OrdersScreen = props => {
     );
   }
 
-  if (!orders) {
+  if (!orders.length) {
     return (
       <View style={styles.screen}>
         <Text>შეკვეთები ვერ მოიძებნა</Text>

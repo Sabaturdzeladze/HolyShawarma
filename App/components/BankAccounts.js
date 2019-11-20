@@ -26,7 +26,7 @@ const BankAccounts = props => {
     const fetchAccounts = async () => {
       setLoading(true);
       try {
-        const {data} = await http.get(`${env.localUsersUrl}/accounts`);
+        const {data} = await http.get(`${env.usersUrl}/accounts`);
         setTbc(data.tbc);
         setBog(data.bog);
         setLoading(false);

@@ -50,13 +50,13 @@ const CustomizeOrder = props => {
         position: {
           left: 50,
           right: 50,
-          bottom: 55
-        }
+          bottom: 55,
+        },
       });
     } catch (error) {
       setIsLoading(false);
       showMessage({
-        message: 'შეკვეთა ვერ გაიგზავნა'
+        message: 'შეკვეთა ვერ გაიგზავნა',
       });
     }
   };
@@ -85,7 +85,14 @@ const CustomizeOrder = props => {
       />
       <SwitchLabel
         label="სველი"
-        toggleSwitch={value => setWet(value)}
+        toggleSwitch={value => {
+          setWet(value);
+
+          if (!wet) {
+            setKetchup(value);
+            setMayonnaise(value);
+          }
+        }}
         state={wet}
       />
       <View style={styles.action}>

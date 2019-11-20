@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Alert} from 'react-native';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
@@ -25,10 +25,10 @@ const OrderItem = ({item}) => {
       try {
         setDeleting(true);
         await dispatch(ordersActions.removeOrder(item._id));
-        showMessage({ message: 'შეკვეთა წაიშალა.' })
+        showMessage({message: 'შეკვეთა წაიშალა.'});
       } catch (error) {
         setDeleting(false);
-        showMessage({ message: 'შეკვეთა ვერ წაიშალა.' })
+        showMessage({message: 'შეკვეთა ვერ წაიშალა.'});
       }
     };
     removeItem();
@@ -68,7 +68,16 @@ const OrderItem = ({item}) => {
                 size={28}
                 name="delete"
                 color={Colors.primary}
-                onPress={removeOrderHandler}
+                onPress={() => {
+                  Alert.alert(
+                    'Warning',
+                    'Do you really want to delete your order?',
+                    [
+                      {text: 'Cancel', style: 'cancel'},
+                      {text: 'Ok', onPress: () => removeOrderHandler()},
+                    ],
+                  );
+                }}
               />
             )}
           </View>

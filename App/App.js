@@ -21,7 +21,7 @@ const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar backgroundColor={Platform.OS === 'android' ? Colors.statusBar : Colors.primary} barStyle='light-content' />
+      <StatusBar backgroundColor={Colors.primary} barStyle="light-content" />
       <MainNavigation />
       <FlashMessage
         position={{bottom: 55, left: 100, right: 100}}

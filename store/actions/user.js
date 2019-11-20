@@ -11,6 +11,7 @@ export const login = user => {
   return async dispatch => {
     try {
       const {data} = await http.post(`${env.usersUrl}/login`, {user});
+      console.log(data)
       await AsyncStorage.setItem('token', data.token);
       await AsyncStorage.setItem('username', user.userName);
       return dispatch({type: USER_LOGIN, user: data.user});
@@ -34,8 +35,7 @@ export const autoLogin = () => {
 export const signup = user => {
   return async dispatch => {
     try {
-      const {data} = await http.post(`${env.usersUrl}/register`, {user});
-      return dispatch({type: USER_LOGIN, user: data});
+      await http.post(`${env.usersUrl}/register`, {user});
     } catch (error) {
       throw error;
     }

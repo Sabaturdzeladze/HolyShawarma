@@ -9,14 +9,10 @@ const OrderNavigator = createStackNavigator({
   Order: {
     screen: OrdersScreen,
     navigationOptions: navData => ({
-      headerTitleContainerStyle: {
+      headerStyle: {
         backgroundColor: Colors.primary,
-        width: '100%',
       },
       headerRightContainerStyle: {
-        backgroundColor: Colors.primary,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
         paddingRight: 10,
       },
       headerTitleStyle: {
@@ -24,7 +20,7 @@ const OrderNavigator = createStackNavigator({
         color: '#fff',
         fontWeight: 'bold',
       },
-      headerRight: (
+      headerRight: () => (
         <Icon
           name="info-circle"
           color="#fff"

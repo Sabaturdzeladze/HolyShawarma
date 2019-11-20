@@ -35,16 +35,15 @@ HomeScreen.navigationOptions = navData => {
 
   return {
     headerTitle: 'გადაირტყი შაურმა',
-    headerTitleContainerStyle: {
-      backgroundColor: Colors.primary,
-      width: '100%',
+    headerStyle: {
+      backgroundColor: Colors.primary
     },
     headerTitleStyle: {
       fontSize: 16,
       color: '#fff',
       fontWeight: 'bold',
     },
-    headerRight: <Icon name="logout" color="#fff" size={23} onPress={logout} />,
+    headerRight: () => <Icon name="logout" color="#fff" size={23} onPress={logout} />,
   };
 };
 

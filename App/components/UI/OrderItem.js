@@ -16,7 +16,6 @@ const OrderItem = ({item}) => {
   const [checked, setChecked] = useState(item.paymentSuccess);
   const [deleting, setDeleting] = useState(false);
   const user = useSelector(state => state.user.user);
-  console.log(item)
   const dispatch = useDispatch();
 
   const txt = generateOrderText(item);

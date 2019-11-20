@@ -3,7 +3,7 @@ import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 import Loading from './Loading';
 
-const ActionButton = ({style, loading, title, ...props}) => {
+const LoginButton = ({style, loading, title, ...props}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -21,7 +21,8 @@ const ActionButton = ({style, loading, title, ...props}) => {
 
 const styles = StyleSheet.create({
   screen: {
-    width: 200,
+
+    width: 100,
     alignItems: 'center',
     justifyContent: 'center',
     height: 45,
@@ -35,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActionButton;
+export default LoginButton;

@@ -10,6 +10,7 @@ import Input from './UI/Input';
 import ActionButton from './UI/ActionButton';
 import Loading from './UI/Loading';
 import env from '../../env';
+import http from '../helpers/requestHelper';
 
 const BankAccounts = props => {
   const [loading, setLoading] = useState(false);
@@ -25,11 +26,7 @@ const BankAccounts = props => {
     const fetchAccounts = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${env.usersUrl}/accounts`);
-
-        if (res.status >= 400) throw new Error('');
-
-        const data = await res.json();
+        const {data} = await http.get(`${env.localUsersUrl}/accounts`);
         setTbc(data.tbc);
         setBog(data.bog);
         setLoading(false);
@@ -124,8 +121,8 @@ const styles = StyleSheet.create({
   },
   color: {
     marginTop: 6,
-    backgroundColor: Colors.primary
-  }
+    backgroundColor: Colors.primary,
+  },
 });
 
 export default BankAccounts;

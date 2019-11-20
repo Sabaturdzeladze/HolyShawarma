@@ -10,10 +10,21 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const login = user => {
   return async dispatch => {
     try {
-      const {data} = await http.post(`${env.localUsersUrl}/login`, {user});
+      const {data} = await http.post(`${env.usersUrl}/login`, {user});
+      await AsyncStorage.setItem('token', data.token);
       await AsyncStorage.setItem('username', user.userName);
-      await AsyncStorage.setItem('password', user.password);
-      return dispatch({type: USER_LOGIN, user: data});
+      return dispatch({type: USER_LOGIN, user: data.user});
+    } catch (error) {
+      throw error;
+    }
+  };
+};
+
+export const autoLogin = () => {
+  return async dispatch => {
+    try {
+      const {data} = await http.post(`${env.usersUrl}/auto-login`, {});
+      return dispatch({ type: USER_LOGIN, user: data.user });
     } catch (error) {
       throw error;
     }
@@ -23,7 +34,7 @@ export const login = user => {
 export const signup = user => {
   return async dispatch => {
     try {
-      const {data} = await http.post(`${env.localUsersUrl}/register`, {user});
+      const {data} = await http.post(`${env.usersUrl}/register`, {user});
       return dispatch({type: USER_LOGIN, user: data});
     } catch (error) {
       throw error;

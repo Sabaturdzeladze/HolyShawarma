@@ -4,6 +4,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Image,
+  Keyboard
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {showMessage} from 'react-native-flash-message';
@@ -49,18 +50,19 @@ const Auth = props => {
     const action = authMethod === 'login' ? login : signup;
 
     try {
+      Keyboard.dismiss()
       setLoading(true);
       await dispatch(action(credentials));
       setLoading(false);
-      props.navigation.navigate('Home');
+      props.navigation.navigate(authMethod === 'login' ? 'Home' : 'Login');
     } catch (error) {
       setLoading(false);
       showMessage({
         message: `${error}`,
         position: {
-          bottom: 10,
-          left: 50,
-          right: 50,
+          bottom: 55,
+          left: 40,
+          right: 40,
         },
       });
     }

@@ -6,7 +6,7 @@ import Colors from '../Constants/Colors';
 
 import CopyableText from './UI/CopyableText';
 import Card from './UI/Card';
-import Input from './UI/Input';
+import AnimatedInputLabel from '../components/UI/AnimatedInputLabel';
 import ActionButton from './UI/ActionButton';
 import Loading from './UI/Loading';
 import env from '../../env';
@@ -76,19 +76,18 @@ const BankAccounts = props => {
       {props.children}
 
       {user.isAdmin && (
-        <Card>
-          <Input
+        <Card style={{ padding: 20 }}>
+          <AnimatedInputLabel
             label="TBC"
             value={tbcInput}
             onChangeText={value => setTbcInput(value)}
-            style={styles.spaceOnTop}
             labelStyle={styles.spaceOnTop}
           />
-          <Input
+          <AnimatedInputLabel
             label="BOG"
             value={bogInput}
             onChangeText={value => setBogInput(value)}
-            labelStyle={styles.spaceOnTop}
+            containerStyle={{ marginTop: 15 }}
           />
           <ActionButton
             loading={formIsSubmitting}

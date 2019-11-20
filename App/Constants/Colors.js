@@ -4,5 +4,6 @@ export default {
   textPrimary: '#707070',
   switchTrackInactive: 'rgba(155, 155, 155, 0.2)',
   switchTrackActive: 'rgba(241, 90, 87, 0.2)',
-  thumbInactive: '#9B9B9B'
+  thumbInactive: '#9B9B9B',
+  authInactiveText: '#B5B5B5'
 }

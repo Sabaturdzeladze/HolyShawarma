@@ -55,7 +55,7 @@ const AnimatedInputLabel = ({
           ...styles.label,
           transform,
           zIndex: focused || value.trim() ? 1 : 0,
-          color: focused ? Colors.primary : Colors.textPrimary,
+          color: focused ? Colors.primary : Colors.authInactiveText,
         }}>
         {label}
       </Animated.Text>
@@ -65,7 +65,7 @@ const AnimatedInputLabel = ({
         style={{
           ...styles.input,
           ...style,
-          borderColor: focused ? Colors.primary : Colors.textPrimary,
+          borderColor: focused ? Colors.primary : Colors.authInactiveText,
         }}
         onFocus={focusHandler}
         onBlur={blurHandler}

@@ -10,8 +10,6 @@ import {showMessage} from 'react-native-flash-message';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import {login, signup} from '../../store/actions/user';
-import Card from './UI/Card';
-import Input from './UI/Input';
 import AnimatedInputLabel from './UI/AnimatedInputLabel';
 import ActionButton from './UI/ActionButton';
 import Colors from '../Constants/Colors';
@@ -105,9 +103,10 @@ const styles = StyleSheet.create({
     paddingTop : 20
   },
   imgContainer :{
-    marginBottom: 50
+    marginBottom: 20
   },
   wrapper: {
+    backgroundColor: '#fff',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -133,6 +132,7 @@ const styles = StyleSheet.create({
   image: {
     width: 155,
     height: 126,
+    resizeMode: 'stretch'
   },
 });
 

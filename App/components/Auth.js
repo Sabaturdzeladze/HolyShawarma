@@ -1,15 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Text, KeyboardAvoidingView} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Image,
+} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {showMessage} from 'react-native-flash-message';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import {login, signup} from '../../store/actions/user';
-import Card from './UI/Card';
-import Input from './UI/Input';
 import AnimatedInputLabel from './UI/AnimatedInputLabel';
 import ActionButton from './UI/ActionButton';
 import Colors from '../Constants/Colors';
+import RedLogo from '../assets/images/logo.png';
 
 const Auth = props => {
   const [userName, setUserName] = useState('');
@@ -29,12 +33,10 @@ const Auth = props => {
     }
   }, []);
 
-  let pageTitle = 'Login Page';
-  let submitButtonTitle = 'Login';
+  let submitButtonTitle = 'შესვლა';
 
   if (authMethod === 'signup') {
-    pageTitle = 'Signup Page';
-    submitButtonTitle = 'Signup';
+    submitButtonTitle = 'რეგისტრაცია';
   }
 
   const changeTextHanlder = (value, state = 'userName') => {
@@ -65,8 +67,10 @@ const Auth = props => {
   };
   return (
     <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
-      <Card style={styles.card}>
-        <Text style={styles.header}>{pageTitle}</Text>
+      <View style={styles.imgContainer}>
+        <Image style={styles.image} source={RedLogo} />
+      </View>
+      <View style={styles.card}>
         <AnimatedInputLabel
           label="გადამრტყმელი"
           value={userName}
@@ -77,6 +81,7 @@ const Auth = props => {
           value={password}
           onChangeText={value => changeTextHanlder(value, 'password')}
           secureTextEntry={true}
+          containerStyle={{ marginTop: 25 }}
         />
         <View style={styles.actionsContainer}>
           <ActionButton
@@ -86,16 +91,25 @@ const Auth = props => {
             style={styles.actionBtn}
           />
         </View>
-      </Card>
+      </View>
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  card: {
+    width: '90%',
+    marginTop: 40 ,
+    paddingTop : 20
+  },
+  imgContainer :{
+    marginBottom: 20
+  },
   wrapper: {
-    backgroundColor: '#FFCD9C',
+    backgroundColor: '#fff',
     height: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     marginBottom: 25,
@@ -114,6 +128,11 @@ const styles = StyleSheet.create({
   },
   actionBtn: {
     backgroundColor: Colors.primary,
+  },
+  image: {
+    width: 155,
+    height: 126,
+    resizeMode: 'stretch'
   },
 });
 

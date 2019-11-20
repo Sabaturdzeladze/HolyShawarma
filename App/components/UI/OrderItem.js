@@ -53,8 +53,9 @@ const OrderItem = ({item}) => {
             </Text>
           </View>
         ) : (
-          <SwitchLabel
-            label={`User: ${item.user.userName}`}
+          <SwitchLabel 
+          style={styles.Admin}
+            label={` ${item.user.userName}`}
             state={checked}
             toggleSwitch={value => paymentChangeHandler(value)}
           />
@@ -131,6 +132,9 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     paddingLeft: 10,
   },
+  Admin: {
+    color: Colors.primary
+  }
 });
 
 export default OrderItem;

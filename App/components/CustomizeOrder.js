@@ -84,7 +84,7 @@ const CustomizeOrder = props => {
         state={ketchup}
       />
       <SwitchLabel
-        label="სველი"
+        label="სოველი"
         toggleSwitch={value => {
           setWet(value);
 

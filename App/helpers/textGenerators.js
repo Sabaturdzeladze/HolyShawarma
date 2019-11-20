@@ -6,7 +6,7 @@ export const generateOrderText = order => {
   txt += !order.ketchup ? 'კეტჩუპის გარეშე, ' : '';
   txt += !order.mayonnaise ? 'მაიონეზის გარეშე, ' : '';
   txt += order.onion ? 'ხახვით, ' : 'უხახვო, ';
-  txt += order.wet ? 'სველი, ' : '';
+  txt += order.wet ? 'სოველი, ' : '';
   txt += order.spicy ? 'ცხარე.' : 'არაცხარე.';
   return txt;
 };

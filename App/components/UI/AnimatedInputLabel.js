@@ -3,7 +3,14 @@ import {View, TextInput, StyleSheet, Animated} from 'react-native';
 
 import Colors from '../../Constants/Colors';
 
-const AnimatedInputLabel = ({label, value, onChangeText, style, ...props}) => {
+const AnimatedInputLabel = ({
+  label,
+  value,
+  onChangeText,
+  style,
+  containerStyle,
+  ...props
+}) => {
   const [labelPositionAnim, setLabelPositionAnim] = useState(
     new Animated.Value(0),
   );
@@ -14,7 +21,7 @@ const AnimatedInputLabel = ({label, value, onChangeText, style, ...props}) => {
     duration: 200,
     seNativeDriver: true,
   });
-  
+
   let transform = [
     {
       translateY: labelPositionAnim.interpolate({
@@ -42,13 +49,13 @@ const AnimatedInputLabel = ({label, value, onChangeText, style, ...props}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={containerStyle}>
       <Animated.Text
         style={{
           ...styles.label,
           transform,
           zIndex: focused || value.trim() ? 1 : 0,
-          color: focused ? Colors.primary : Colors.textPrimary,
+          color: focused ? Colors.primary : Colors.authInactiveText,
         }}>
         {label}
       </Animated.Text>
@@ -58,7 +65,7 @@ const AnimatedInputLabel = ({label, value, onChangeText, style, ...props}) => {
         style={{
           ...styles.input,
           ...style,
-          borderColor: focused ? Colors.primary : Colors.textPrimary,
+          borderColor: focused ? Colors.primary : Colors.authInactiveText,
         }}
         onFocus={focusHandler}
         onBlur={blurHandler}
@@ -69,17 +76,15 @@ const AnimatedInputLabel = ({label, value, onChangeText, style, ...props}) => {
 };
 
 const styles = StyleSheet.create({
-  container : {
-    marginTop: 15
-  },
   label: {
     position: 'absolute',
     top: 10,
-    left: 16.5,
+    left: 11.5,
     backgroundColor: '#fff',
     overflow: 'hidden',
     fontSize: 12,
     color: Colors.primary,
+    paddingHorizontal: 5
   },
   input: {
     borderColor: Colors.primary,

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, TextInput, StyleSheet, Animated} from 'react-native';
 
 import Colors from '../../Constants/Colors';
@@ -22,6 +22,11 @@ const AnimatedInputLabel = ({
     seNativeDriver: true,
   });
 
+  useEffect(() => {
+    if (!value) return;
+    labelToTop.start();
+  }, [value])
+  
   let transform = [
     {
       translateY: labelPositionAnim.interpolate({

@@ -81,7 +81,7 @@ const Auth = props => {
           value={password}
           onChangeText={value => changeTextHanlder(value, 'password')}
           secureTextEntry={true}
-          containerStyle={{ marginTop: 25 }}
+          containerStyle={{ marginTop: 15 }}
         />
         <View style={styles.actionsContainer}>
           <ActionButton
@@ -100,16 +100,17 @@ const styles = StyleSheet.create({
   card: {
     width: '90%',
     marginTop: 40 ,
-    paddingTop : 20
+    paddingTop : 10
   },
   imgContainer :{
-    marginBottom: 20
+    marginBottom: 10
   },
   wrapper: {
     backgroundColor: '#fff',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1
   },
   header: {
     marginBottom: 25,
@@ -128,10 +129,11 @@ const styles = StyleSheet.create({
   },
   actionBtn: {
     backgroundColor: Colors.primary,
+    height: 40
   },
   image: {
-    width: 155,
-    height: 126,
+    width: 147,
+    height: 120,
     resizeMode: 'stretch'
   },
 });

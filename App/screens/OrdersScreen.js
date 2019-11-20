@@ -30,7 +30,6 @@ const OrdersScreen = props => {
     try {
       await dispatch(ordersActions.fetchOrders());
     } catch (error) {
-      console.log(error);
     } finally {
       setIsRefreshing(false);
     }

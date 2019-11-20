@@ -11,7 +11,6 @@ export const login = user => {
   return async dispatch => {
     try {
       const {data} = await http.post(`${env.usersUrl}/login`, {user});
-      console.log(data)
       await AsyncStorage.setItem('token', data.token);
       await AsyncStorage.setItem('username', user.userName);
       return dispatch({type: USER_LOGIN, user: data.user});

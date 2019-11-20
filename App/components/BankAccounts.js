@@ -63,7 +63,6 @@ const BankAccounts = props => {
       setBogInput('');
       setFormIsSubmitting(false);
     } catch (error) {
-      console.log(error);
       setFormIsSubmitting(false);
       showMessage({
         message: 'Error setting accounts',

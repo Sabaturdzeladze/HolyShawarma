@@ -16,6 +16,7 @@ const OrderItem = ({item}) => {
   const [checked, setChecked] = useState(item.paymentSuccess);
   const [deleting, setDeleting] = useState(false);
   const user = useSelector(state => state.user.user);
+  console.log(item)
   const dispatch = useDispatch();
 
   const txt = generateOrderText(item);
@@ -23,9 +24,17 @@ const OrderItem = ({item}) => {
   const removeOrderHandler = useCallback(() => {
     const removeItem = async () => {
       try {
+       if(item.paymentSuccess){
+        showMessage({message: 'შეკვეთის თანხა გადახდილია!', position: {
+          left: 60,
+          right: 60,
+          bottom: 55
+        }})
+       }else{
         setDeleting(true);
         await dispatch(ordersActions.removeOrder(item._id));
         showMessage({message: 'შეკვეთა წაიშალა.'});
+       }
       } catch (error) {
         setDeleting(false);
         showMessage({message: 'შეკვეთა ვერ წაიშალა.'});
@@ -39,7 +48,6 @@ const OrderItem = ({item}) => {
       await dispatch(ordersActions.setPaymentForOrder(item._id, state));
       setChecked(state);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -55,7 +63,7 @@ const OrderItem = ({item}) => {
         ) : (
           <SwitchLabel 
           style={styles.Admin}
-            label={` ${item.user.userName}`}
+            label={item.user.userName}
             state={checked}
             toggleSwitch={value => paymentChangeHandler(value)}
           />

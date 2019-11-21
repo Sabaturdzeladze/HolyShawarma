@@ -78,11 +78,11 @@ const OrderItem = ({item}) => {
                 color={Colors.primary}
                 onPress={() => {
                   Alert.alert(
-                    'Warning',
-                    'Do you really want to delete your order?',
+                    'მოიცა !',
+                    'ჰა დაფიქრდი, არ გინდა, რომ გადაირტყა?',
                     [
-                      {text: 'Cancel', style: 'cancel'},
-                      {text: 'Ok', onPress: () => removeOrderHandler()},
+                      {text: 'კაი ხო', style: 'cancel'},
+                      {text: 'შეკვეთას ვცვლი კაცო', onPress: removeOrderHandler},
                     ],
                   );
                 }}

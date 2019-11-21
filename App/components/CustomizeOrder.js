@@ -57,6 +57,11 @@ const CustomizeOrder = props => {
       setIsLoading(false);
       showMessage({
         message: 'შეკვეთა ვერ გაიგზავნა',
+        position: {
+          left: 60,
+          right: 60,
+          bottom: 55,
+        }
       });
     }
   };

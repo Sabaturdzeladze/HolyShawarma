@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {FlatList, StyleSheet, View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {showMessage} from 'react-native-flash-message';
 
 import * as ordersActions from '../../store/actions/orders';
 import OrderItem from '../components/UI/OrderItem';
@@ -16,14 +17,25 @@ const OrdersScreen = props => {
 
   const dispatch = useDispatch();
   const {navigation} = props;
+  const {length} = orders;
 
-  const showSummaryHandler = useCallback(() => setModalIsOpen(true), [
-    setModalIsOpen,
-  ]);
+  const showSummaryHandler = useCallback(() => {
+    if (!orders.length) {
+      return showMessage({
+        message: 'შეკვეთები ვერ მოიძებნა',
+        position: {
+          bottom: 55,
+          left: 80,
+          right: 80
+        }
+      });
+    }
+    setModalIsOpen(true);
+  }, [setModalIsOpen, length]);
 
   useEffect(() => {
     navigation.setParams({showSummary: showSummaryHandler});
-  }, []);
+  }, [showSummaryHandler]);
 
   const fetchOrders = useCallback(async () => {
     setIsRefreshing(true);
@@ -65,7 +77,7 @@ const OrdersScreen = props => {
         transparent={true}
         visible={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}>
-        <OrdersSummary orders={orders} request={()=>setModalIsOpen(false)} />
+        <OrdersSummary orders={orders} request={() => setModalIsOpen(false)} />
       </CustomModal>
       <FlatList
         data={orders}

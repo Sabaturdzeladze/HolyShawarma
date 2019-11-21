@@ -9,6 +9,8 @@ const AnimatedInputLabel = ({
   onChangeText,
   style,
   containerStyle,
+  translateY,
+  translateX,
   ...props
 }) => {
   const [labelPositionAnim, setLabelPositionAnim] = useState(
@@ -23,21 +25,21 @@ const AnimatedInputLabel = ({
   });
 
   useEffect(() => {
-    if (!value) return;
+    if (!value.trim()) return;
     labelToTop.start();
-  }, []);
+  }, [value]);
   
   let transform = [
     {
       translateY: labelPositionAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, -20],
+        outputRange: [0, translateY],
       }),
     },
     {
       translateX: labelPositionAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, 15],
+        outputRange: [0, translateX],
       }),
     },
   ];

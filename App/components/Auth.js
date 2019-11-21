@@ -77,6 +77,8 @@ const Auth = props => {
           label="გადამრტყმელი"
           value={userName}
           onChangeText={value => changeTextHanlder(value)}
+          translateY={-20}
+          translateX={15}
         />
         <AnimatedInputLabel
           label="პაროლი"
@@ -84,6 +86,8 @@ const Auth = props => {
           onChangeText={value => changeTextHanlder(value, 'password')}
           secureTextEntry={true}
           containerStyle={{ marginTop: 10 }}
+          translateY={-20}
+          translateX={15}
         />
         <View style={styles.actionsContainer}>
           <LoginButton

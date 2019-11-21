@@ -75,18 +75,22 @@ const BankAccounts = props => {
       {props.children}
 
       {user.isAdmin && (
-        <Card style={{ padding: 20 }}>
+        <Card style={{padding: 20}}>
           <AnimatedInputLabel
             label="TBC"
             value={tbcInput}
             onChangeText={value => setTbcInput(value)}
             labelStyle={styles.spaceOnTop}
+            translateY={-20}
+            translateX={15}
           />
           <AnimatedInputLabel
             label="BOG"
             value={bogInput}
             onChangeText={value => setBogInput(value)}
-            containerStyle={{ marginTop: 15 }}
+            containerStyle={{marginTop: 15}}
+            translateY={-20}
+            translateX={15}
           />
           <ActionButton
             loading={formIsSubmitting}

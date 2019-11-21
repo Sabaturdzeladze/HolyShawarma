@@ -26,7 +26,7 @@ const BankAccounts = props => {
     const fetchAccounts = async () => {
       setLoading(true);
       try {
-        const {data} = await http.get(`${env.localUsersUrl}/accounts`);
+        const {data} = await http.get(`${env.usersUrl}/accounts`);
         setTbc(data.tbc);
         setBog(data.bog);
         setLoading(false);
@@ -63,7 +63,6 @@ const BankAccounts = props => {
       setBogInput('');
       setFormIsSubmitting(false);
     } catch (error) {
-      console.log(error);
       setFormIsSubmitting(false);
       showMessage({
         message: 'Error setting accounts',

@@ -34,8 +34,7 @@ export const autoLogin = () => {
 export const signup = user => {
   return async dispatch => {
     try {
-      const {data} = await http.post(`${env.usersUrl}/register`, {user});
-      return dispatch({type: USER_LOGIN, user: data});
+      await http.post(`${env.usersUrl}/register`, {user});
     } catch (error) {
       throw error;
     }

@@ -30,7 +30,6 @@ const OrdersScreen = props => {
     try {
       await dispatch(ordersActions.fetchOrders());
     } catch (error) {
-      console.log(error);
     } finally {
       setIsRefreshing(false);
     }
@@ -51,7 +50,7 @@ const OrdersScreen = props => {
     );
   }
 
-  if (!orders) {
+  if (!orders.length) {
     return (
       <View style={styles.screen}>
         <Text>შეკვეთები ვერ მოიძებნა</Text>

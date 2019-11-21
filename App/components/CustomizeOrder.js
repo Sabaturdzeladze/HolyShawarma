@@ -50,13 +50,13 @@ const CustomizeOrder = props => {
         position: {
           left: 50,
           right: 50,
-          bottom: 55
-        }
+          bottom: 55,
+        },
       });
     } catch (error) {
       setIsLoading(false);
       showMessage({
-        message: 'შეკვეთა ვერ გაიგზავნა'
+        message: 'შეკვეთა ვერ გაიგზავნა',
       });
     }
   };
@@ -75,17 +75,30 @@ const CustomizeOrder = props => {
       />
       <SwitchLabel
         label="მაიონეზით"
-        toggleSwitch={value => setMayonnaise(value)}
+        toggleSwitch={value => {
+          setMayonnaise(value);
+          if (!value && !ketchup) setWet(false);
+        }}
         state={mayonnaise}
       />
       <SwitchLabel
         label="კეტჩუპით"
-        toggleSwitch={value => setKetchup(value)}
+        toggleSwitch={value => {
+          setKetchup(value);
+          if (!value && !mayonnaise) setWet(false);
+        }}
         state={ketchup}
       />
       <SwitchLabel
         label="სოველი"
-        toggleSwitch={value => setWet(value)}
+        toggleSwitch={value => {
+          setWet(value);
+
+          if (!wet) {
+            setKetchup(value);
+            setMayonnaise(value);
+          }
+        }}
         state={wet}
       />
       <View style={styles.action}>

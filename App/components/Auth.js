@@ -4,6 +4,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Image,
+  Keyboard
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {showMessage} from 'react-native-flash-message';
@@ -49,18 +50,19 @@ const Auth = props => {
     const action = authMethod === 'login' ? login : signup;
 
     try {
+      Keyboard.dismiss()
       setLoading(true);
       await dispatch(action(credentials));
       setLoading(false);
-      props.navigation.navigate('Home');
+      props.navigation.navigate(authMethod === 'login' ? 'Home' : 'Login');
     } catch (error) {
       setLoading(false);
       showMessage({
         message: `${error}`,
         position: {
-          bottom: 10,
-          left: 50,
-          right: 50,
+          bottom: 55,
+          left: 40,
+          right: 40,
         },
       });
     }
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1
   },
   header: {
     marginBottom: 25,
@@ -128,11 +131,10 @@ const styles = StyleSheet.create({
   },
   actionBtn: {
     backgroundColor: Colors.primary,
-
   },
   image: {
-    width: 155,
-    height: 126,
+    width: 147,
+    height: 120,
     resizeMode: 'stretch'
   },
 });

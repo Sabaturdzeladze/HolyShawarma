@@ -33,23 +33,23 @@ const StartupScreen = props => {
 
   const spin = rotateAnimation.interpolate({
     inputRange: [0, 0.5, 1],
-    outputRange: ['30deg', '-10deg', '30deg'],
+    outputRange: ['20deg', '-10deg', '20deg'],
   });
   const spin2 = rotateAnimation.interpolate({
     inputRange: [0, 0.5, 1],
-    outputRange: ['-30deg', '10deg', '-30deg'],
+    outputRange: ['-20deg', '10deg', '-20deg'],
   });
   const transform = [
     {
       scaleX: zoomRing.interpolate({
         inputRange: [0, 0.5, 1],
-        outputRange: [1, 1.25, 1],
+        outputRange: [1, 1.2, 1],
       }),
     },
     {
       scaleY: zoomRing.interpolate({
         inputRange: [0, 0.5, 1],
-        outputRange: [1, 1.25, 1],
+        outputRange: [1, 1.2, 1],
       }),
     },
   ];
@@ -72,20 +72,18 @@ const StartupScreen = props => {
         <Animated.Image
           source={wing_left}
           style={{
+            ...styles.wing,
             transform: [{rotate: spin}],
-            position: 'relative',
-            left: 100,
-            top: 30,
+            left: 90,
           }}
         />
-        <Image source={shawarma} />
+        <Image source={shawarma} style={{width: 250, height: 195, resizeMode: 'stretch'}} />
         <Animated.Image
           source={wing_right}
           style={{
+            ...styles.wing,
             transform: [{rotate: spin2}],
-            position: 'relative',
-            right: 93,
-            top: 30,
+            right: 84,
           }}
         />
       </View>
@@ -107,12 +105,19 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     transform: [{rotate: '45deg'}],
   },
+  wing: {
+    top: 30,
+    width: 50,
+    height: 90,
+    position: 'relative',
+    resizeMode: 'stretch'
+  },
   ring: {
     marginLeft: 7,
     marginBottom: 15,
     resizeMode: 'stretch',
-    width: 71,
-    height: 17,
+    width: 65,
+    height: 16,
   },
 });
 

@@ -21,8 +21,7 @@ const ActionButton = ({style, loading, title, ...props}) => {
 
 const styles = StyleSheet.create({
   screen: {
-
-    width: 200,
+    width: 180,
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,

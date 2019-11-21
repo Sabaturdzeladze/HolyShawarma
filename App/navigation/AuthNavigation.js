@@ -7,36 +7,51 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import Colors from '../Constants/Colors';
 import SignupScreen from '../screens/auth/SignupScreen';
 
-const AuthNavigator = createBottomTabNavigator({
-  Login: {
-    screen: LoginScreen,
-    navigationOptions: ({navigation}) => {
-      return {
-        tabBarIcon: ({tintColor, focused}) => {
-          return <Icon name="login" size={20} color={focused ? '#fff' :  '#ccc'} />;
-        },
-        tabBarLabel: 'შესვლა',
-      };
+const AuthNavigator = createBottomTabNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: ({navigation}) => {
+        return {
+          tabBarIcon: ({tintColor, focused}) => {
+            return (
+              <Icon
+                name="login"
+                size={20}
+                color={focused ? Colors.primary : '#707070'}
+              />
+            );
+          },
+          tabBarLabel: 'შესვლა',
+        };
+      },
+    },
+    Signup: {
+      screen: SignupScreen,
+      navigationOptions: ({navigation}) => {
+        return {
+          tabBarIcon: ({tintColor, focused}) => {
+            return (
+              <SignupIcon
+                name="md-person-add"
+                size={20}
+                color={focused ? Colors.primary : '#707070'}
+              />
+            );
+          },
+          tabBarLabel: 'რეგისტრაცია',
+        };
+      },
     },
   },
-  Signup: {
-    screen: SignupScreen,
-    navigationOptions: ({navigation}) => {
-      return {
-        tabBarIcon: ({tintColor, focused}) => {
-          return <SignupIcon name="md-person-add" size={20} color={focused ?  '#fff' :  '#ccc'} />;
-        },
-        tabBarLabel: 'რეგისტრაცია',
-      };
+  {
+    tabBarOptions: {
+      activeTintColor: Colors.primary,
+      inactiveTintColor: '#707070',
+      activeBackgroundColor: '#fff',
+      inactiveBackgroundColor: '#fff',
     },
   },
-}, {
-  tabBarOptions: {
-    activeTintColor: '#fff',
-    inactiveTintColor: '#ccc',
-    activeBackgroundColor: Colors.primary,
-    inactiveBackgroundColor: Colors.primary,
-  }
-});
+);
 
 export default AuthNavigator;

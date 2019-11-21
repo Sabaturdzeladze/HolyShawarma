@@ -21,7 +21,6 @@ const LoginButton = ({style, loading, title, ...props}) => {
 
 const styles = StyleSheet.create({
   screen: {
-    flex: 1,
     width: 100,
     alignItems: 'center',
     justifyContent: 'center',

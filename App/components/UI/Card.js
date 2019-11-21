@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 
+const {width} = Dimensions.get('window');
 const Card = props => {
   return <View style={styles.wrapper}><View style={{...styles.card, ...props.style}}>{props.children}</View></View>;
 };
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   card: {
-    width: '92%',
+    width: width - 32,
     shadowColor: 'black',
     shadowOpacity: 0.26,
     shadowOffset: {width: 0, height: 2},
